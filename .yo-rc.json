@@ -1,0 +1,7 @@
+{
+  "generator-direct": {
+    "destPath": "data2",
+    "tplPath": "tpl",
+    "tplExt": ".txt"
+  }
+}
