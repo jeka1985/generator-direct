@@ -1,0 +1,16 @@
+BEM.DOM.decl({ <%- declaration %> }, {
+    onSetMod: {
+        js: function() {
+            this._initEvents();
+        }
+    },
+
+    _initEvents: function() {
+        this._subscribe = BEM.create('i-subscription-manager');
+    },
+
+    destruct: function() {
+        this._subscribe.dispose();
+        this.__base.apply(this, arguments);
+    }
+});

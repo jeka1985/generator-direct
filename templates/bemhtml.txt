@@ -1,0 +1,5 @@
+<%- declaration%> {
+
+    content: <%- JSON.stringify(declaration) %>
+
+}

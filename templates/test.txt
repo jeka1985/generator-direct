@@ -1,0 +1,9 @@
+describe('<%- declaration %>', function() {
+    beforeEach(function() {
+
+    });
+
+    afterEach(function() {
+
+    });
+});
