@@ -5,7 +5,7 @@ var common = require('../../common');
 module.exports = {
 
     js: function(input) {
-        var params = ['blockName', 'modName', 'modVal', 'baseBlock'].reduce(function(data, key) {
+        var params = ['blockName', 'modName', 'modVal', 'baseBlock', 'implement'].reduce(function(data, key) {
 
             if (input[key]) data[key] = input[key];
 
@@ -64,6 +64,7 @@ module.exports = {
         input.techList.indexOf('js') >= 0 && shouldDeps.push('i-subscription-manager');
         input.baseBlock && mustDeps.push(input.baseBlock);
         input.baseModel && mustDeps.push(input.baseModel);
+        input.implement && mustDeps.push(input.implement);
 
         return {
             mustDeps: mustDeps,
