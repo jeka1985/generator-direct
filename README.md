@@ -1,4 +1,4 @@
-# generator-direct [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url]
+# generator-direct
 > scaffolding tool for yandex.direct development (BEM)
 
 ## Installation
