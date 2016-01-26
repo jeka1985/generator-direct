@@ -41,7 +41,7 @@ module.exports = yeoman.generators.Base.extend({
             desc:'Имя интерфейса блока'
         });
 
-        this.sourceRoot('./templates');
+        this.sourceRoot('./generator-direct/templates');
     },
 
     initializing: function () {
