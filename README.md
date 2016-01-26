@@ -1,33 +1,47 @@
 # generator-direct
-> scaffolding tool for yandex.direct development (BEM)
+> генератор файлов для директа
 
-## Installation
+## Как пользоваться
 
-First, install [Yeoman](http://yeoman.io) and generator-direct using [npm](https://www.npmjs.com/) (we assume you have pre-installed [node.js](https://nodejs.org/)).
+Генератор умеет создавать файлы 9 технологий для блока или элемента 
 
-```bash
-npm install -g yo
-npm install -g generator-direct
-```
-
-Then generate your new project:
+Простейший вариант создания блока:
 
 ```bash
-yo generator-direct
+yo direct:block b-name
 ```
 
-## Getting To Know Yeoman
+Блок с модификатором muted yes:
 
-Yeoman has a heart of gold. He&#39;s a person with feelings and opinions, but he&#39;s very easy to work with. If you think he&#39;s too opinionated, he can be easily convinced. Feel free to [learn more about him](http://yeoman.io/).
+```bash
+yo direct:block b-name muted yes 
+```
+
+Блок c заданым набором технологий:
+
+```bash
+yo direct:block b-name --tech css,js,deps 
+```
+
+Блок c декларированным базовым блоком:
+
+```bash
+yo direct:block b-name --baseBlock --tech js 
+```
+
+Блок c декларированным интерфейсом:
+
+```bash
+yo direct:block b-name --implement i-interface
+```
+
+Модель блока с декларированной базовой моделью:
+
+```bash
+yo direct:block b-name --baseModel --tech vm 
+```
 
 ## License
 
  © [Eugene Yemelin]()
 
-
-[npm-image]: https://badge.fury.io/js/generator-direct.svg
-[npm-url]: https://npmjs.org/package/generator-direct
-[travis-image]: https://travis-ci.org/jeka1985/generator-direct.svg?branch=master
-[travis-url]: https://travis-ci.org/jeka1985/generator-direct
-[daviddm-image]: https://david-dm.org/jeka1985/generator-direct.svg?theme=shields.io
-[daviddm-url]: https://david-dm.org/jeka1985/generator-direct
