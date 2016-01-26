@@ -6,6 +6,8 @@ var path = require('path'),
 
 module.exports = {
 
+    root: './desktop.blocks',
+
     tplExtension: '.txt',
 
     techExtension: {
@@ -26,7 +28,7 @@ module.exports = {
 
     getPath: function(tech, params) {
 
-        return path.join(this.getBemFolder(params),  common.getBemName(params) + this.techExtension[tech]);
+        return path.join(this.root, this.getBemFolder(params),  common.getBemName(params) + this.techExtension[tech]);
     },
 
     getBemFolder: function(params) {

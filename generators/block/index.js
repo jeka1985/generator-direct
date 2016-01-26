@@ -1,6 +1,7 @@
 'use strict';
 var yeoman = require('yeoman-generator'),
     fs = require('fs'),
+    path = require('path'),
     loader = require('../../loaders/base');
 
 module.exports = yeoman.generators.Base.extend({
@@ -101,27 +102,12 @@ module.exports = yeoman.generators.Base.extend({
     },
 
     _getParams: function() {
-        var getValidTechList = function(input) {
-            var rawArray = typeof input == 'string' ? input.split(',') : input,
-                validTech = this.techList;
-
-            return rawArray.reduce(function(arr, item) {
-
-                if(validTech.indexOf(item) >= 0 && arr.indexOf(item) < 0) {
-                    arr.push(item);
-                }
-
-                return arr;
-
-            }, []);
-        };
-
         return {
             elemName: this.elemName || this.answers.elemName,
             blockName: this.blockName || this.answers.blockName,
             modName: this.modName,
             modVal: this.modVal || this.answers.modVal,
-            techList: getValidTechList(this.options.tech || this.answers.tech),
+            techList: this._getValid(this.options.tech || this.answers.tech),
             baseModel: this.options.baseModel,
             implement: this.options.implement
         };
@@ -139,6 +125,21 @@ module.exports = yeoman.generators.Base.extend({
             }, this);
             fs.rmdirSync(path);
         }
+    },
+
+    _getValid: function(input) {
+        var rawArray = typeof input == 'string' ? input.split(',') : input,
+            validTech = this.techList;
+
+        return rawArray.reduce(function(arr, item) {
+
+            if(validTech.indexOf(item) >= 0 && arr.indexOf(item) < 0) {
+                arr.push(item);
+            }
+
+            return arr;
+
+        }, []);
     },
 
     writing: function () {
@@ -164,7 +165,7 @@ module.exports = yeoman.generators.Base.extend({
         }, function (answers) {
             var params = this._getParams();
 
-            !answers.approve && this._removePath(params.blockName)
+            !answers.approve && this._removePath(path.join(this.helper.root, params.blockName))
 
             done();
         }.bind(this))
