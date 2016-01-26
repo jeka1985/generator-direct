@@ -2,7 +2,8 @@
 var yeoman = require('yeoman-generator'),
     fs = require('fs'),
     path = require('path'),
-    loader = require('../../loaders/base');
+    loader = require('../../loaders/base'),
+    yosay = require('yosay');
 
 module.exports = yeoman.generators.Base.extend({
 
@@ -103,11 +104,11 @@ module.exports = yeoman.generators.Base.extend({
 
     _getParams: function() {
         return {
-            elemName: this.elemName || this.answers.elemName,
             blockName: this.blockName || this.answers.blockName,
             modName: this.modName,
             modVal: this.modVal || this.answers.modVal,
             techList: this._getValid(this.options.tech || this.answers.tech),
+            baseBlock: this.options.baseBlock,
             baseModel: this.options.baseModel,
             implement: this.options.implement
         };
@@ -161,7 +162,7 @@ module.exports = yeoman.generators.Base.extend({
         this.prompt({
             type: 'confirm',
             name: 'approve',
-            message: 'Файлы созданы, оставляем?'
+            message: yosay('Файлы блока созданы, сохраняем ?')
         }, function (answers) {
             var params = this._getParams();
 

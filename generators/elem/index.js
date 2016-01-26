@@ -9,6 +9,8 @@ module.exports = yeoman.generators.Base.extend({
     constructor: function() {
         yeoman.generators.Base.apply(this, arguments);
 
+
+
         this.argument('elemName', {
             desc: 'Название элемента',
             required: false
@@ -168,7 +170,7 @@ module.exports = yeoman.generators.Base.extend({
         this.prompt({
             type: 'confirm',
             name: 'approve',
-            message: 'Файлы созданы, оставляем?'
+            message: yosay('Файлы элемента созданы, сохраняем ?')
         }, function (answers) {
             var params = this._getParams();
 
