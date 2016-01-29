@@ -4,7 +4,6 @@ var Base = require('../../common/classes/BaseGenerator');
 module.exports = Base.extend({
 
     prompting: {
-
         askName: function() {
             this.askName();
         },
@@ -24,8 +23,6 @@ module.exports = Base.extend({
             });
         }, this)
     },
-
-
 
     end: function() {
         this.askApproval();

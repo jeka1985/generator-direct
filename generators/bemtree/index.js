@@ -1,5 +1,6 @@
 'use strict';
-var Base = require('../../common/classes/BaseGenerator');
+var Base = require('../../common/classes/BaseGenerator'),
+    utils = require('../../common/utils');
 
 module.exports = Base.extend({
 
@@ -13,15 +14,8 @@ module.exports = Base.extend({
     },
 
     _getData: function() {
-        var opts = this.options,
-            data = { block: this.blockName };
-
-        if(opts.modName && opts.modVal) data.mod = [opts.modName, opts.modVal].join(' ');
-
         return {
-            declaration: Object.keys(data).map(function(key) {
-                return [key, data[key]].join(' ');
-            }).join(', ')
+            declaration: utils.getBemTplDecl(this.blockName, this.options)
         };
     },
 
