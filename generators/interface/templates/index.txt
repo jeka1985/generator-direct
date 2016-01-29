@@ -1,0 +1,1 @@
+BEM.INTERFACE.decl('<%- declaration %>', [ /* Method names to implement */ ]);
