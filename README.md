@@ -1,44 +1,57 @@
 # generator-direct
-> генератор файлов для директа
+>  scaffolding инструмент для yandex.direct
 
-## Как пользоваться
 
-Генератор умеет создавать файлы 9 технологий для блока или элемента 
-
-Простейший вариант создания блока:
+# Гененрруемые технологии
 
 ```bash
-yo direct:block b-name
+css
+js
+md
+deps
+test
+utils
+bemtree
+bemhtml
+interface
+model
+
 ```
 
-Блок с модификатором muted yes:
+# Параметры
 
 ```bash
-yo direct:block b-name muted yes 
+--elem      - название элемента
+--modName   - название модификатора
+--modVal    - значение модификатора
+--baseBlock - базовый блок
+--baseModel - базовая модель
+--tech      - набор технологий
+
 ```
 
-Блок c заданым набором технологий:
+# Создание сущностей
 
 ```bash
-yo direct:block b-name --tech css,js,deps 
+yo direct b-some
 ```
 
-Блок c декларированным базовым блоком:
+# Создание модификатора блока
 
 ```bash
-yo direct:block b-name --baseBlock --tech js 
+yo direct b-some --modName view --modVal inline
 ```
 
-Блок c декларированным интерфейсом:
+# Создание элемента блока
 
 ```bash
-yo direct:block b-name --implement i-interface
+yo direct b-some --elem item
 ```
 
-Модель блока с декларированной базовой моделью:
+# Создание модифицированного элемента блока
 
 ```bash
-yo direct:block b-name --baseModel --tech vm 
+yo direct b-some --elem item --modName view --modVal inline
 ```
 
 ## License

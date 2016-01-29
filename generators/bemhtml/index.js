@@ -1,4 +1,5 @@
 'use strict';
+
 var Base = require('../../common/classes/BaseGenerator'),
     utils = require('../../common/utils');
 
