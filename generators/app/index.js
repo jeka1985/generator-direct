@@ -16,7 +16,7 @@ module.exports = Base.extend({
     },
 
     templates: function() {
-        this._getValidTechList(this.options.tech).forEach(function(tech) {
+        this.getValidTechList(this.options.tech).forEach(function(tech) {
             this.composeWith(['direct', tech].join(':'), {
                 args: [this.blockName],
                 options: this.options

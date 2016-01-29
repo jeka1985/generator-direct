@@ -13,17 +13,21 @@ module.exports = Base.extend({
         }
     },
 
+    writing: function () {
+        this.fs.copyTpl(
+            this.templatePath('index.txt'),
+            this.destinationPath(this.getPath('.bemhtml')),
+            this._getData());
+    },
+
+    /**
+     * Готовит данные для шаблонизации
+     * @returns {Object}
+     * @private
+     */
     _getData: function() {
         return {
             declaration: utils.getBemTplDecl(this.blockName, this.options)
         };
-    },
-
-    writing: function () {
-        this.fs.copyTpl(
-            this.templatePath('index.txt'),
-            this.destinationPath(this._getPath('.bemhtml')),
-            this._getData()
-        );
     }
 });

@@ -12,17 +12,21 @@ module.exports = Base.extend({
         }
     },
 
-    _getData: function() {
-        return {
-            declaration: this._getBemName()
-        }
-    },
-
     writing: function () {
         this.fs.copyTpl(
             this.templatePath('index.txt'),
-            this.destinationPath(this._getPath('.test.js')),
-            this._getData()
-        );
+            this.destinationPath(this.getPath('.test.js')),
+            this._getData());
+    },
+
+    /**
+     * Готовит данные для шаблонизации
+     * @returns {Object}
+     * @private
+     */
+    _getData: function() {
+        return {
+            declaration: this.getName()
+        }
     }
 });

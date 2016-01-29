@@ -12,6 +12,18 @@ module.exports = Base.extend({
         }
     },
 
+    writing: function () {
+        this.fs.copyTpl(
+            this.templatePath('index.txt'),
+            this.destinationPath(this.getPath('.js')),
+            this._getData());
+    },
+
+    /**
+     * Готовит данные для шаблонизации
+     * @returns {Object}
+     * @private
+     */
     _getData: function() {
         var declParams = ['elem', 'modName', 'modVal', 'baseBlock', 'implements'].reduce(function(decl, key) {
             if (this.options[key]) decl[key] = this.options[key];
@@ -24,13 +36,5 @@ module.exports = Base.extend({
                 return [key, "'" + declParams[key] + "'"].join(': ');
             }).join(', ')
         };
-    },
-
-    writing: function () {
-        this.fs.copyTpl(
-            this.templatePath('index.txt'),
-            this.destinationPath(this._getPath('.js')),
-            this._getData()
-        );
     }
 });

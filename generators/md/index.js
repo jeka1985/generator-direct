@@ -12,18 +12,22 @@ module.exports = Base.extend({
         }
     },
 
-    _getData: function() {
-        return {
-            name: this._getBemName(),
-            author: process.env['USER']
-        }
-    },
-
     writing: function () {
         this.fs.copyTpl(
             this.templatePath('index.txt'),
-            this.destinationPath(this._getPath('.md')),
-            this._getData()
-        );
+            this.destinationPath(this.getPath('.md')),
+            this._getData());
+    },
+
+    /**
+     * Готовит данные для шаблонизации
+     * @returns {Object}
+     * @private
+     */
+    _getData: function() {
+        return {
+            name: this.getName(),
+            author: process.env['USER']
+        }
     }
 });

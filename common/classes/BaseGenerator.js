@@ -6,8 +6,6 @@ var yeoman = require('yeoman-generator'),
     yosay = require('yosay'),
     utils = require('../utils');
 
-   /* подтянуть утилс */
-
 module.exports = yeoman.generators.Base.extend({
 
     constructor: function() {
@@ -27,6 +25,10 @@ module.exports = yeoman.generators.Base.extend({
         this.techParams = this.config.get('techParams');
     },
 
+    /**
+     * Уточняет имя блока
+     * @protected
+     */
     askName: function() {
         this._ask([
             {
@@ -36,10 +38,14 @@ module.exports = yeoman.generators.Base.extend({
                 when: !this.blockName
             }
         ], function (answers) {
-            if (answers.blockName) this.blockName = answers.blockName;
+            if (answers.blockName) this.blockName = answers.blockName.trim();
         });
     },
 
+    /**
+     * Уточняет значение модификатора
+     * @protected
+     */
     askModVal: function() {
         this._ask([
             {
@@ -49,10 +55,14 @@ module.exports = yeoman.generators.Base.extend({
                 when: !!this.options.modName && !this.options.modVal
             }
         ], function (answers) {
-            if (answers.modVal) this.options.modVal = answers.modVal;
+            if (answers.modVal) this.options.modVal = answers.modVal.trim();
         });
     },
 
+    /**
+     * Уточняет набор технологий
+     * @protected
+     */
     askTech: function() {
         this._ask([
             {
@@ -73,6 +83,10 @@ module.exports = yeoman.generators.Base.extend({
         });
     },
 
+    /**
+     * Спрашивает подтверждение сохранения
+     * @protected
+     */
     askApproval: function() {
         this._ask([
             {
@@ -81,10 +95,93 @@ module.exports = yeoman.generators.Base.extend({
                 message: yosay('Все готово, сохраняем ?')
             }
         ], function (answers) {
-            !answers.approve && this._removePath(path.join(this.root, this._getBemFolder()))
+            !answers.approve && this.removePath(path.join(this.root, this.getFolder()))
         });
     },
 
+    /**
+     * Возвращает имя файла в БЭМ нотации по заданым параметрам
+     * @returns {String}
+     * @protected
+     */
+    getName: function() {
+
+        return utils.getBemName(this.blockName, this.options.elem, this.options.modName, this.options.modVal);
+    },
+
+    /**
+     * Возвращает имя папки в БЭМ нотации по заданым параметрам
+     * @returns {String}
+     * @protected
+     */
+    getFolder: function() {
+
+        return utils.getBemFolder(this.blockName, this.options.elem, this.options.modName);
+    },
+
+    /**
+     * Возвращает массив технологий
+     * @param {String|Array} input - набор технологий
+     * @returns {Array}
+     * @protected
+     */
+    getValidTechList: function(input) {
+        var rawArray = typeof input == 'string' ? input.split(',') : input,
+            validTech = Object.keys(this.techParams);
+
+        return (rawArray.reduce(function(arr, item) {
+
+            if(validTech.indexOf(item) >= 0 && arr.indexOf(item) < 0) {
+                arr.push(item);
+            }
+
+            return arr;
+
+        }, []));
+    },
+
+    /**
+     * Удаляет папку
+     * @param {String} path - путь до папки
+     * @protected
+     */
+    removePath: function(path) {
+        if( fs.existsSync(path) ) {
+            fs.readdirSync(path).forEach(function(file){
+                var curPath = path + "/" + file;
+                if(fs.lstatSync(curPath).isDirectory()) {
+                    this.removePath(curPath);
+                } else {
+                    fs.unlinkSync(curPath);
+                }
+            }, this);
+            fs.rmdirSync(path);
+        }
+    },
+
+    /**
+     * Хелпер для задания вопросов пользователю
+     * @protected
+     */
+    isTechSelected: function(tech) {
+        return this.options.tech && this.getValidTechList(this.options.tech).indexOf(tech) >= 0;
+    },
+
+    /**
+     * Возвращает путь до файла по заданым параметрам
+     * @param {String} ext - расширение файла
+     * @returns {String}
+     * @protected
+     */
+    getPath: function(ext) {
+
+        return path.join(this.root, this.getFolder(), this.getName() + ext);
+    },
+
+    /**
+     * Хелпер для задания вопросов пользователю
+     * @private
+     */
     _ask: function(questions, callback) {
         var done = this.async();
 
@@ -94,56 +191,5 @@ module.exports = yeoman.generators.Base.extend({
 
             done();
         }.bind(this));
-    },
-
-    /*в utils*/
-    _getPath: function(ext) {
-
-        return path.join(this.root, this._getBemFolder(), this._getBemName() + ext);
-    },
-
-    /*в utils*/
-    _getBemName: function() {
-
-        return utils.getBemName(this.blockName, this.options.elem, this.options.modName, this.options.modVal);
-    },
-
-    /*в utils*/
-    _getBemFolder: function() {
-
-        return utils.getBemFolder(this.blockName, this.options.elem, this.options.modName);
-    },
-
-    _getValidTechList: function(input) {
-        var rawArray = typeof input == 'string' ? input.split(',') : input,
-            validTech = Object.keys(this.techParams);
-
-        return rawArray.reduce(function(arr, item) {
-
-            if(validTech.indexOf(item) >= 0 && arr.indexOf(item) < 0) {
-                arr.push(item);
-            }
-
-            return arr;
-
-        }, []);
-    },
-
-    _removePath: function(path) {
-        if( fs.existsSync(path) ) {
-            fs.readdirSync(path).forEach(function(file){
-                var curPath = path + "/" + file;
-                if(fs.lstatSync(curPath).isDirectory()) {
-                    this._removePath(curPath);
-                } else {
-                    fs.unlinkSync(curPath);
-                }
-            }, this);
-            fs.rmdirSync(path);
-        }
-    },
-
-    _isTechSelected: function(tech) {
-        return this.options.tech && this._getValidTechList(this.options.tech).indexOf(tech) >= 0;
     }
 });

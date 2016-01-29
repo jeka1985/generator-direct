@@ -12,11 +12,23 @@ module.exports = Base.extend({
         }
     },
 
+    writing: function () {
+        this.fs.copyTpl(
+            this.templatePath('index.txt'),
+            this.destinationPath(this.getPath('.deps.js')),
+            this._getData());
+    },
+
+    /**
+     * Готовит данные для шаблонизации
+     * @returns {Object}
+     * @private
+     */
     _getData: function() {
         var mustDeps = [],
             shouldDeps = [];
 
-        this._isTechSelected('js') && shouldDeps.push('i-subscription-manager');
+        this.isTechSelected('js') && shouldDeps.push('i-subscription-manager');
 
         return ['baseBlock', 'baseModel', 'implements'].reduce(function(hash, key) {
 
@@ -25,13 +37,5 @@ module.exports = Base.extend({
             return hash;
 
         }.bind(this), { mustDeps: mustDeps, shouldDeps: shouldDeps });
-    },
-
-    writing: function () {
-        this.fs.copyTpl(
-            this.templatePath('index.txt'),
-            this.destinationPath(this._getPath('.deps.js')),
-            this._getData()
-        );
     }
 });
