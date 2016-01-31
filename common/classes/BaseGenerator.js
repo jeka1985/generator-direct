@@ -21,8 +21,32 @@ module.exports = yeoman.generators.Base.extend({
         this.option('baseModel', { desc:'Имя базовой модели' });
         this.option('implements', { desc:'Имя интерфейса блока' });
 
-        this.root = this.config.get('root');
-        this.techParams = this.config.get('techParams');
+        this.root = './desktop.blocks';
+
+        this.techParams = {
+            js: {
+                byDefault: true
+            },
+            md: {
+                byDefault: true
+            },
+            css: {
+                byDefault: true
+            },
+            test: {
+                byDefault: true
+            },
+            deps: {
+                byDefault: true
+            },
+            bemhtml: {
+                byDefault: true
+            },
+            utils: { },
+            model: { },
+            interface: { },
+            bemtree: { }
+        };
     },
 
     /**
