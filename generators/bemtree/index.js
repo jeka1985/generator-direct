@@ -17,7 +17,7 @@ module.exports = Base.extend({
     writing: function () {
         this.fs.copyTpl(
             this.templatePath('index.txt'),
-            this.destinationPath(this.getPath('.bemtree.xjst')),
+            this.destinationPath(this._getPath('.bemtree.xjst')),
             this._getData());
     },
 

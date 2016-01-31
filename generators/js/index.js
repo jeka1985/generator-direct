@@ -1,14 +1,15 @@
 'use strict';
 
-var Base = require('../../common/classes/BaseGenerator');
+var Base = require('../../common/classes/BaseGenerator'),
+    utils = require('../../common/utils');
 
 module.exports = Base.extend({
 
     prompting: {
-        askName: function() {
+        isName: function() {
             this.askName();
         },
-        askModVal: function() {
+        isModVal: function() {
             this.askModVal();
         }
     },
@@ -16,7 +17,7 @@ module.exports = Base.extend({
     writing: function () {
         this.fs.copyTpl(
             this.templatePath('index.txt'),
-            this.destinationPath(this.getPath('.js')),
+            this.destinationPath(this._getPath('.js')),
             this._getData());
     },
 
@@ -33,9 +34,7 @@ module.exports = Base.extend({
         }.bind(this), { name: this.blockName });
 
         return {
-            declaration: Object.keys(declParams).map(function(key) {
-                return [key, "'" + declParams[key] + "'"].join(': ');
-            }).join(', ')
+            declaration: utils.getJsDeclaration(declParams)
         };
     }
 });

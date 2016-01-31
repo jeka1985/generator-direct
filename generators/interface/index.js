@@ -27,7 +27,7 @@ module.exports = Base.extend({
     writing: function () {
         this.fs.copyTpl(
             this.templatePath('index.txt'),
-            this.destinationPath(this.getPath('.interface.js')),
+            this.destinationPath(this._getPath('.interface.js')),
             this._getData());
     }
 });

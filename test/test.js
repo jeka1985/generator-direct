@@ -1,17 +1,18 @@
 'use strict';
+
 var test = require('./helper.js'),
     assert = require('yeoman-assert'),
     path = require('path'),
     root = './desktop.blocks';
 
-describe('Генератор direct:js', function () {
+describe('Генератор direct:test', function () {
     [
         {
 
             title: 'Без параметров',
             params: {},
-            path: 'foo/foo.js',
-            decl: 'BEM.DOM.decl({ name: \'foo\' }'
+            path: 'foo/foo.test.js',
+            decl: 'describe(\'foo\''
         },
         {
 
@@ -20,15 +21,15 @@ describe('Генератор direct:js', function () {
                 modName: 'muted',
                 modVal: 'yes'
             },
-            path: 'foo/_muted/foo_muted_yes.js',
-            decl: 'BEM.DOM.decl({ name: \'foo\', modName: \'muted\', modVal: \'yes\' }'
+            path: 'foo/_muted/foo_muted_yes.test.js',
+            decl: 'describe(\'foo_muted_yes\''
         },
         {
 
             title: 'С параметром --elem',
             params: { elem: 'item' },
-            path: 'foo/__item/foo__item.js',
-            decl: 'BEM.DOM.decl({ name: \'foo\', elem: \'item\' }'
+            path: 'foo/__item/foo__item.test.js',
+            decl: 'describe(\'foo__item\''
         },
         {
 
@@ -38,27 +39,13 @@ describe('Генератор direct:js', function () {
                 modName: 'view',
                 modVal: 'inline'
             },
-            path: 'foo/__item/_view/foo__item_view_inline.js',
-            decl: 'BEM.DOM.decl({ name: \'foo\', elem: \'item\', modName: \'view\', modVal: \'inline\' }'
-        },
-        {
-
-            title: 'С параметром --baseBlock',
-            params: { baseBlock: 'i-glue' },
-            path: 'foo/foo.js',
-            decl: 'BEM.DOM.decl({ name: \'foo\', baseBlock: \'i-glue\' }'
-        },
-        {
-
-            title: 'С параметром --implements',
-            params: { implements: 'i-interface' },
-            path: 'foo/foo.js',
-            decl: 'BEM.DOM.decl({ name: \'foo\', implements: \'i-interface\' }'
+            path: 'foo/__item/_view/foo__item_view_inline.test.js',
+            decl:  'describe(\'foo__item_view_inline\''
         }
     ].forEach(function(desc) {
         describe(desc.title, function () {
             beforeEach(function (done) {
-                test.prepare(done, desc.params, 'js');
+                test.prepare(done, desc.params, 'test');
             });
 
             it('файл именован и размещен согласно БЕМ нотации', function () {

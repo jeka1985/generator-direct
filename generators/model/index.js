@@ -1,6 +1,7 @@
 'use strict';
 
-var Base = require('../../common/classes/BaseGenerator');
+var Base = require('../../common/classes/BaseGenerator'),
+    utils = require('../../common/utils');
 
 module.exports = Base.extend({
 
@@ -18,7 +19,7 @@ module.exports = Base.extend({
 
         this.fs.copyTpl(
             this.templatePath('index.txt'),
-            this.destinationPath(this.getPath(isSpecial ? '.js' : '.vm.js')),
+            this.destinationPath(this._getPath(isSpecial ? '.js' : '.vm.js')),
             this._getData());
     },
 
@@ -33,9 +34,7 @@ module.exports = Base.extend({
         if(this.options.baseModel) data.baseModel = this.options.baseModel;
 
         return {
-            declaration : Object.keys(data).map(function(key) {
-                return [key, "'" + data[key] + "'"].join(': ');
-            }).join(', ')
+            declaration : utils.getJsDeclaration(data)
         };
     }
 });

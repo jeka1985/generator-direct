@@ -30,12 +30,11 @@ module.exports = yeoman.generators.Base.extend({
      * @protected
      */
     askName: function() {
-        this._ask([
+        !this.blockName && this._ask([
             {
                 type : 'input',
                 name : 'blockName',
-                message : 'Название блока',
-                when: !this.blockName
+                message : 'Название блока'
             }
         ], function (answers) {
             if (answers.blockName) this.blockName = answers.blockName.trim();
@@ -47,12 +46,11 @@ module.exports = yeoman.generators.Base.extend({
      * @protected
      */
     askModVal: function() {
-        this._ask([
+        (!!this.options.modName && !this.options.modVal) && this._ask([
             {
                 type : 'input',
                 name : 'modVal',
-                message : 'Значение модификатора',
-                when: !!this.options.modName && !this.options.modVal
+                message : 'Значение модификатора'
             }
         ], function (answers) {
             if (answers.modVal) this.options.modVal = answers.modVal.trim();
@@ -64,12 +62,11 @@ module.exports = yeoman.generators.Base.extend({
      * @protected
      */
     askTech: function() {
-        this._ask([
+        !this.options.tech && this._ask([
             {
                 type: 'checkbox',
                 name: 'tech',
                 message: 'Выберите технологии',
-                when: !this.options.tech,
                 choices: Object.keys(this.techParams).map(function(opt) {
                     return {
                         name: opt,
@@ -161,6 +158,7 @@ module.exports = yeoman.generators.Base.extend({
 
     /**
      * Хелпер для задания вопросов пользователю
+     * @returns {Boolean}
      * @protected
      */
     isTechSelected: function(tech) {
@@ -173,13 +171,15 @@ module.exports = yeoman.generators.Base.extend({
      * @returns {String}
      * @protected
      */
-    getPath: function(ext) {
+    _getPath: function(ext) {
 
         return path.join(this.root, this.getFolder(), this.getName() + ext);
     },
 
     /**
      * Хелпер для задания вопросов пользователю
+     * @param {Array} questions - массив вопросов
+     * @param {Function} callback - функция обратного вызова
      * @private
      */
     _ask: function(questions, callback) {

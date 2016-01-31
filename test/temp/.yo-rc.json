@@ -1,0 +1,29 @@
+{
+  "generator-direct": {
+    "root": "./desktop.blocks",
+    "techParams": {
+      "js": {
+        "byDefault": true
+      },
+      "md": {
+        "byDefault": true
+      },
+      "css": {
+        "byDefault": true
+      },
+      "test": {
+        "byDefault": true
+      },
+      "deps": {
+        "byDefault": true
+      },
+      "bemhtml": {
+        "byDefault": true
+      },
+      "utils": { },
+      "model": { },
+      "interface": { },
+      "bemtree": { }
+    }
+  }
+}
