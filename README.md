@@ -1,4 +1,4 @@
-# generator-direct [![Dependency Status][daviddm-image]][daviddm-url] [![Coverage percentage][coveralls-image]][coveralls-url]
+# generator-direct [![Dependency Status][daviddm-image]][daviddm-url] [![Coverage Status](https://coveralls.io/repos/github/jeka1985/generator-direct/badge.svg?branch=master)](https://coveralls.io/github/jeka1985/generator-direct?branch=master)
 
 >  scaffolding инструмент для yandex.direct
 
@@ -126,7 +126,6 @@ yo direct b-some —tech js,deps —baseBlock i-glue
 ```
 yo direct i-interface —tech interface,deps
 ```
-
 
 [npm-image]: https://badge.fury.io/js/generator-direct.svg
 [npm-url]: https://npmjs.org/package/generator-direct
