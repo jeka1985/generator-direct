@@ -13,7 +13,7 @@ Direct генератор для Yeoman берет на себя рутинны�
 Рекомендуется использовать основной генератор с указание списка технологий
 
 ```
-yo direct b-block-name —tech js,css,deps
+yo direct b-block-name --tech js,css,deps
 ```
 
 Также возможно использование сад-генератора напрямую
@@ -44,29 +44,29 @@ yo direct:css b-some
 ## Параметры
 
 
-* `—elem`
+* `--elem`
 
   Название элемента.
 
-* `—modName`
+* `--modName`
 
   Название модификатора.
 
-* `—modVal`
+* `--modVal`
 
   Значение модификатора (если не указано, генератор уточнит его).
 
-* `—baseBlock`
+* `--baseBlock`
 
   Название базового блока.
   Если создается deps файл, то базовый блок будет автоматически включен в секцию mustDeps
 
-* `—baseModel`
+* `--baseModel`
 
   Название базовой модели.
   Если создается deps файл, то базовая модель будет автоматически включена в секцию mustDeps
 
-* `—implements`
+* `--implements`
 
   Название интерфейса.
   Если создается deps файл, то интерфейс будет автоматически включен в секцию mustDeps
@@ -82,19 +82,19 @@ yo direct b-some
 создать модификатор блока
 
 ```
-yo direct b-some —modName muted —modVal yes
+yo direct b-some --modName muted --modVal yes
 ```
 
 создать элемент блока
 
 ```
-yo direct b-some —elem child
+yo direct b-some --elem child
 ```
 
 создать модифицированный элемент блока
 
 ```
-yo direct b-some —elem child —modName view —modVal inline
+yo direct b-some --elem child --modName view --modVal inline
 ```
 
 ## Прикладные примеры
@@ -102,29 +102,29 @@ yo direct b-some —elem child —modName view —modVal inline
 При генерации файла модели учитывается имя блока
 
 ```
-yo direct dm-model —tech model // dm-model/dm-model.js
+yo direct dm-model --tech model // dm-model/dm-model.js
 ```
 
 ```
-yo direct b-some —tech model // b-some/b-some.vm.js
+yo direct b-some --tech model // b-some/b-some.vm.js
 ```
 
 создать модель с базовой моделью
 
 ```
-yo direct b-some —tech model,deps —baseModel m-some
+yo direct b-some --tech model,deps --baseModel m-some
 ```
 
 создать блок с i-glue
 
 ```
-yo direct b-some —tech js,deps —baseBlock i-glue
+yo direct b-some --tech js,deps --baseBlock i-glue
 ```
 
 создать интерфейс (Экспериментальный генератор)
 
 ```
-yo direct i-interface —tech interface,deps
+yo direct i-interface --tech interface,deps
 ```
 
 [npm-image]: https://badge.fury.io/js/generator-direct.svg
