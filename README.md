@@ -59,3 +59,11 @@ yo direct b-some --elem item --modName view --modVal inline
 
  © [Eugene Yemelin]()
 
+[npm-image]: https://badge.fury.io/js/generator-qwe.svg
+[npm-url]: https://npmjs.org/package/generator-qwe
+[travis-image]: https://travis-ci.org/jeka1985/generator-qwe.svg?branch=master
+[travis-url]: https://travis-ci.org/jeka1985/generator-qwe
+[daviddm-image]: https://david-dm.org/jeka1985/generator-qwe.svg?theme=shields.io
+[daviddm-url]: https://david-dm.org/jeka1985/generator-qwe
+[coveralls-image]: https://coveralls.io/repos/jeka1985/generator-qwe/badge.svg
+[coveralls-url]: https://coveralls.io/r/jeka1985/generator-qwe
