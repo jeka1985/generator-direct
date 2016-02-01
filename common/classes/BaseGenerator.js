@@ -1,6 +1,5 @@
 'use strict';
 var yeoman = require('yeoman-generator'),
-    _ = require('lodash'),
     path = require('path'),
     fs = require('fs'),
     yosay = require('yosay'),

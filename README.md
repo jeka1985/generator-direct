@@ -3,61 +3,130 @@
 >  scaffolding инструмент для yandex.direct
 
 
-# Гененрруемые технологии
+# Direct generator
 
-```bash
-css
-js
-md
-deps
-test
-utils
-bemtree
-bemhtml
-interface
-model
+Direct генератор для Yeoman берет на себя рутинные действия при создании блоков, элементов и модификаторов.
+В работе генератор использует самостоятельные саб-генераторы для создания файлов технологий, это позволяет создавать как наборы  так и отдельные файлы.
+
+## Использование
+
+Рекомендуется использовать основной генератор с указание списка технологий
 
 ```
-
-# Параметры
-
-```bash
---elem      - название элемента
---modName   - название модификатора
---modVal    - значение модификатора
---baseBlock - базовый блок
---baseModel - базовая модель
---tech      - набор технологий
-
+yo direct b-block-name —tech js,css,deps
 ```
 
-# Создание сущностей
+Также возможно использование сад-генератора напрямую
+```
+yo direct:css b-some
+```
 
-```bash
+
+## Саб-Генераторы
+
+доступные генераторы технологий:
+
+- direct:js
+- direct:model
+- direct:interface - Экспериментальный генератор!
+- direct:bemhtml
+- direct:bemtree
+- direct:css
+- direct:test
+- direct:md
+- direct:utils
+- direct:deps
+
+## Аргументы
+
+* `blockName` - имя блока
+
+## Параметры
+
+
+* `—elem`
+
+  Название элемента.
+
+* `—modName`
+
+  Название модификатора.
+
+* `—modVal`
+
+  Значение модификатора (если не указано, генератор уточнит его).
+
+* `—baseBlock`
+
+  Название базового блока.
+  Если создается deps файл, то базовый блок будет автоматически включен в секцию mustDeps
+
+* `—baseModel`
+
+  Название базовой модели.
+  Если создается deps файл, то базовая модель будет автоматически включена в секцию mustDeps
+
+* `—implements`
+
+  Название интерфейса.
+  Если создается deps файл, то интерфейс будет автоматически включен в секцию mustDeps
+
+## Создание сущностей
+
+создать блока
+
+```
 yo direct b-some
 ```
 
-# Создание модификатора блока
+создать модификатор блока
 
-```bash
-yo direct b-some --modName view --modVal inline
+```
+yo direct b-some —modName muted —modVal yes
 ```
 
-# Создание элемента блока
+создать элемент блока
 
-```bash
-yo direct b-some --elem item
+```
+yo direct b-some —elem child
 ```
 
-# Создание модифицированного элемента блока
+создать модифицированный элемент блока
 
-```bash
-yo direct b-some --elem item --modName view --modVal inline
+```
+yo direct b-some —elem child —modName view —modVal inline
 ```
 
-## License
+## Прикладные примеры
 
- © [Eugene Yemelin]()
+При генерации файла модели учитывается имя блока
+
+```
+yo direct dm-model —tech model // dm-model/dm-model.js
+```
+
+```
+yo direct b-some —tech model // b-some/b-some.vm.js
+```
+
+создать модель с базовой моделью
+
+```
+yo direct b-some —tech model,deps —baseModel m-some
+```
+
+создать блок с i-glue
+
+```
+yo direct b-some —tech js,deps —baseBlock i-glue
+```
+
+создать интерфейс (Экспериментальный генератор)
+
+```
+yo direct i-interface —tech interface,deps
+```
+
 
 [npm-image]: https://badge.fury.io/js/generator-direct.svg
 [npm-url]: https://npmjs.org/package/generator-direct
