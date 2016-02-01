@@ -1,4 +1,4 @@
-# generator-direct [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url] [![Coverage percentage][coveralls-image]][coveralls-url]
+# generator-direct [![Dependency Status][daviddm-image]][daviddm-url] [![Coverage percentage][coveralls-image]][coveralls-url]
 
 >  scaffolding инструмент для yandex.direct
 
