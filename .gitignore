@@ -7,24 +7,5 @@ coverage
 
 .gitattributes
 
-.idea/.name
+.idea/
 
-.idea/atlassian-ide-plugin.xml
-
-.idea/encodings.xml
-
-.travis.yml
-
-.idea/generator-direct.iml
-
-.idea/misc.xml
-
-.idea/modules.xml
-
-.idea/scopes/scope_settings.xml
-
-.idea/vcs.xml
-
-.idea/workspace.xml
-
-gulpfile.js
