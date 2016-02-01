@@ -1,4 +1,5 @@
 node_modules
+
 coverage
 
 .editorconfig
@@ -8,4 +9,3 @@ coverage
 .gitattributes
 
 .idea/
-
