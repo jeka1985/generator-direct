@@ -1,6 +1,6 @@
 {
   "name": "generator-direct",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "scaffolding tool for yandex.direct development (BEM)",
   "homepage": "https://github.com/jeka1985/generator-direct",
   "author": "Eugene Yemelin <dr.jeka@gmail.com>",
