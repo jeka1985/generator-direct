@@ -1,33 +1,25 @@
 'use strict';
 
-var Base = require('../../common/classes/BaseGenerator');
+var Base = require('../../common/classes/BaseGenerator'),
+    u = require('../../common/utils'),
+    behavior = require('../../common/behaviors/baseBehavior');
 
-module.exports = Base.extend({
+module.exports = u.generator.create(Base, behavior, {
 
-    prompting: {
-        askName: function() {
-            this.askName();
-        },
-        askModVal: function() {
-            this.askModVal();
-        }
-    },
+    settings: require('./settings'),
 
-    writing: function () {
-        this.fs.copyTpl(
-            this.templatePath('index.txt'),
-            this.destinationPath(this._getPath('.utils.js')),
-            this._getData());
-    },
+    fileExt: '.utils.js',
 
-    /**
-     * Готовит данные для шаблонизации
-     * @returns {Object}
-     * @private
-     */
-    _getData: function() {
+    _getData: function(inputData) {
         return {
-            declaration: this.getName()
-        }
+            declaration: u.bem.getName(inputData)
+        };
     }
+
 });
+
+
+
+
+
+

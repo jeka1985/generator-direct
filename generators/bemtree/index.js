@@ -1,34 +1,21 @@
 'use strict';
 
 var Base = require('../../common/classes/BaseGenerator'),
-    utils = require('../../common/utils');
+    u = require('../../common/utils'),
+    behavior = require('../../common/behaviors/baseBehavior'),
+    settings = require('./settings');
 
-module.exports = Base.extend({
 
-    prompting: {
-        askName: function() {
-            this.askName();
-        },
-        askModVal: function() {
-            this.askModVal();
-        }
-    },
+module.exports = u.generator.create(Base, behavior, {
 
-    writing: function () {
-        this.fs.copyTpl(
-            this.templatePath('index.txt'),
-            this.destinationPath(this._getPath('.bemtree.xjst')),
-            this._getData());
-    },
+    settings: settings,
 
-    /**
-     * Готовит данные для шаблонизации
-     * @returns {Object}
-     * @private
-     */
-    _getData: function() {
+    fileExt: '.bemtree.xjst',
+
+    _getData: function(inputData) {
         return {
-            declaration: utils.getBemTplDecl(this.blockName, this.options)
+            declaration: u.bem.getTplDecl(inputData.blockName, inputData)
         };
     }
+
 });

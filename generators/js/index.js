@@ -1,40 +1,27 @@
 'use strict';
 
 var Base = require('../../common/classes/BaseGenerator'),
-    utils = require('../../common/utils');
+    u = require('../../common/utils'),
+    behavior = require('../../common/behaviors/baseBehavior'),
+    _ = require('lodash');
 
-module.exports = Base.extend({
+module.exports = u.generator.create(Base, behavior, {
 
-    prompting: {
-        isName: function() {
-            this.askName();
-        },
-        isModVal: function() {
-            this.askModVal();
-        }
-    },
+    settings: require('./settings'),
 
-    writing: function () {
-        this.fs.copyTpl(
-            this.templatePath('index.txt'),
-            this.destinationPath(this._getPath('.js')),
-            this._getData());
-    },
+    fileExt: '.js',
 
-    /**
-     * Готовит данные для шаблонизации
-     * @returns {Object}
-     * @private
-     */
-    _getData: function() {
-        var declParams = ['elem', 'modName', 'modVal', 'baseBlock', 'implements'].reduce(function(decl, key) {
-            if (this.options[key]) decl[key] = this.options[key];
-
-            return decl;
-        }.bind(this), { name: this.blockName });
+    _getData: function(inputData) {
 
         return {
-            declaration: utils.getJsDeclaration(declParams)
+            declaration: u.bem.getJsDeclaration(_.without(_.keys(this.props), 'blockName').reduce(function(decl, key) {
+                var data = inputData[key];
+
+                if (data) decl[key] = data;
+
+                return decl;
+            }.bind(this), { name: inputData.blockName }))
         };
     }
+
 });

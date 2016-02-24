@@ -1,42 +1,31 @@
 'use strict';
 
-var Base = require('../../common/classes/BaseGenerator');
+var Base = require('../../common/classes/BaseGenerator'),
+    u = require('../../common/utils'),
+    behavior = require('../../common/behaviors/baseBehavior'),
+    settings = require('./settings');
 
-module.exports = Base.extend({
+module.exports = u.generator.create(Base, behavior, {
 
-    prompting: {
-        askName: function() {
-            this.askName();
-        },
-        askModVal: function() {
-            this.askModVal();
-        }
-    },
+    settings: settings,
 
-    writing: function () {
-        this.fs.copyTpl(
-            this.templatePath('index.txt'),
-            this.destinationPath(this._getPath('.deps.js')),
-            this._getData());
-    },
+    fileExt: '.deps.js',
 
-    /**
-     * Готовит данные для шаблонизации
-     * @returns {Object}
-     * @private
-     */
-    _getData: function() {
+    _getData: function(inputData) {
         var mustDeps = [],
             shouldDeps = [];
 
-        this.isTechSelected('js') && shouldDeps.push('i-subscription-manager');
+        //shouldDeps.push('i-subscription-manager');
 
         return ['baseBlock', 'baseModel', 'implements'].reduce(function(hash, key) {
 
-            this.options[key] && hash.mustDeps.push(this.options[key]);
+            inputData[key] && hash.mustDeps.push(inputData[key]);
 
             return hash;
 
         }.bind(this), { mustDeps: mustDeps, shouldDeps: shouldDeps });
     }
+
 });
+
+

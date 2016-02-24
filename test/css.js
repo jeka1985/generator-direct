@@ -8,52 +8,135 @@ var test = require('./helper.js'),
 describe('Генератор direct:css', function () {
     [
         {
-
             title: 'Без параметров',
             params: {},
-            path: 'foo/foo.css',
-            decl: '.foo'
+            asserts: [{
+                path: 'foo/foo.css',
+                decl: '.foo'
+            }]
         },
         {
-
             title: 'С параметрами --modName muted --modVal yes',
             params: {
                 modName: 'muted',
                 modVal: 'yes'
             },
-            path: 'foo/_muted/foo_muted_yes.css',
-            decl: '.foo_muted_yes'
+            asserts: [{
+                path: 'foo/_muted/foo_muted_yes.css',
+                decl: '.foo_muted_yes'
+            }]
         },
         {
-
             title: 'С параметром --elem',
             params: { elem: 'item' },
-            path: 'foo/__item/foo__item.css',
-            decl: '.foo__item'
+            asserts: [{
+                path: 'foo/__item/foo__item.css',
+                decl: '.foo__item'
+            }]
         },
         {
-
             title: 'С параметрами --elem --modName --modVal',
             params: {
                 elem: 'item',
                 modName: 'view',
                 modVal: 'inline'
             },
-            path: 'foo/__item/_view/foo__item_view_inline.css',
-            decl: '.foo__item_view_inline'
+            asserts: [{
+                path: 'foo/__item/_view/foo__item_view_inline.css',
+                decl: '.foo__item_view_inline'
+            }]
+        },
+        {
+            title: 'с множественным значением blockName --elem --modName --modVal',
+            params: {
+                blockName: 'b-some,b-other',
+                elem: 'wrap,item',
+                modName: 'kind,type',
+                modVal: 'inline,block'
+            },
+            asserts: [
+                {
+                    path: 'b-some/__wrap/_kind/b-some__wrap_kind_inline.css',
+                    decl: '.b-some__wrap_kind_inline'
+                },
+                {
+                    path: 'b-some/__wrap/_type/b-some__wrap_type_inline.css',
+                    decl: '.b-some__wrap_type_inline'
+                },
+                {
+                    path: 'b-some/__wrap/_kind/b-some__wrap_kind_block.css',
+                    decl: '.b-some__wrap_kind_block'
+                },
+                {
+                    path: 'b-some/__wrap/_type/b-some__wrap_type_block.css',
+                    decl: '.b-some__wrap_type_block'
+                },
+                {
+                    path: 'b-some/__item/_kind/b-some__item_kind_inline.css',
+                    decl: '.b-some__item_kind_inline'
+                },
+                {
+                    path: 'b-some/__item/_type/b-some__item_type_inline.css',
+                    decl: '.b-some__item_type_inline'
+                },
+                {
+                    path: 'b-some/__item/_kind/b-some__item_kind_block.css',
+                    decl: '.b-some__item_kind_block'
+                },
+                {
+                    path: 'b-some/__item/_type/b-some__item_type_block.css',
+                    decl: '.b-some__item_type_block'
+                },
+                {
+                    path: 'b-other/__wrap/_kind/b-other__wrap_kind_inline.css',
+                    decl: '.b-other__wrap_kind_inline'
+                },
+                {
+                    path: 'b-other/__wrap/_type/b-other__wrap_type_inline.css',
+                    decl: '.b-other__wrap_type_inline'
+                },
+                {
+                    path: 'b-other/__wrap/_kind/b-other__wrap_kind_block.css',
+                    decl: '.b-other__wrap_kind_block'
+                },
+                {
+                    path: 'b-other/__wrap/_type/b-other__wrap_type_block.css',
+                    decl: '.b-other__wrap_type_block'
+                },
+                {
+                    path: 'b-other/__item/_kind/b-other__item_kind_inline.css',
+                    decl: '.b-other__item_kind_inline'
+                },
+                {
+                    path: 'b-other/__item/_type/b-other__item_type_inline.css',
+                    decl: '.b-other__item_type_inline'
+                },
+                {
+                    path: 'b-other/__item/_kind/b-other__item_kind_block.css',
+                    decl: '.b-other__item_kind_block'
+                },
+                {
+                    path: 'b-other/__item/_type/b-other__item_type_block.css',
+                    decl: '.b-other__item_type_block'
+                }
+            ]
         }
     ].forEach(function(desc) {
         describe(desc.title, function () {
-            beforeEach(function (done) {
+            before(function (done) {
                 test.prepare(done, desc.params, 'css');
             });
 
-            it('файл именован и размещен согласно БЕМ нотации', function () {
-                assert.file(path.join(root, desc.path));
-            });
+            desc.asserts.forEach(function(params) {
+                describe('создает файл ' + params.path, function () {
+                    it('именованный и размещенный согласно БЕМ нотации', function () {
+                        assert.file(path.join(root, params.path));
+                    });
 
-            it('декларация соответсвует параметрам', function () {
-                assert.fileContent(path.join(root, desc.path), desc.decl);
+                    it('с декларацией соответсвующей параметрам', function () {
+                        assert.fileContent(path.join(root, params.path), params.decl);
+                    });
+                });
             });
         });
     });
