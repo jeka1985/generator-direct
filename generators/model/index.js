@@ -1,40 +1,27 @@
 'use strict';
 
 var Base = require('../../common/classes/BaseGenerator'),
-    utils = require('../../common/utils');
+    u = require('../../common/utils'),
+    behavior = require('../../common/behaviors/baseBehavior');
 
-module.exports = Base.extend({
+module.exports = u.generator.create(Base, behavior, {
 
-    prompting: {
-        askName: function() {
-            this.askName();
-        },
-        askModVal: function() {
-            this.askModVal();
-        }
+    settings: require('./settings'),
+
+    fileExt: function() {
+        return /^dm|vm/.test(this.props.blockName) ? '.js' : '.vm.js';
     },
 
-    writing: function () {
-        var isSpecial = /^dm|vm/.test(this.blockName);
+    _getData: function(inputData) {
+        var data = { model: u.bem.getName(inputData) };
 
-        this.fs.copyTpl(
-            this.templatePath('index.txt'),
-            this.destinationPath(this._getPath(isSpecial ? '.js' : '.vm.js')),
-            this._getData());
-    },
-
-    /**
-     * Готовит данные для шаблонизации
-     * @returns {Object}
-     * @private
-     */
-    _getData: function() {
-        var data = { model: this.getName() };
-
-        if(this.options.baseModel) data.baseModel = this.options.baseModel;
+        if(this.props.baseModel) data.baseModel = this.props.baseModel;
 
         return {
-            declaration : utils.getJsDeclaration(data)
+            declaration : u.bem.getJsDeclaration(data)
         };
     }
+
 });
+
+
