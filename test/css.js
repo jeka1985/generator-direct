@@ -123,7 +123,7 @@ describe('Генератор direct:css', function () {
         }
     ].forEach(function(desc) {
         describe(desc.title, function () {
-            beforeEach(function (done) {
+            before(function (done) {
                 test.prepare(done, desc.params, 'css');
             });
 

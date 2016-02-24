@@ -138,7 +138,7 @@ describe('Вызов генератор direct:js', function () {
         }
     ].forEach(function(desc) {
         describe(desc.title, function () {
-            beforeEach(function (done) {
+            before(function (done) {
                 test.prepare(done, desc.params, 'js');
             });
 
