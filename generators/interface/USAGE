@@ -1,0 +1,12 @@
+For glossary, and key concepts information run
+    yo direct --h
+
+Warning
+
+ Conflicts with direct:js generator with same file extension creating.
+
+Examples
+
+  yo direct:interface block1                                          - generate tech for single entity
+  yo direct:interface block1,block2 --m some-mod --v modval,modval2   - generate tech for multi entities
+  yo direct:interface block1,block2 --d                               - delete tech list for scope

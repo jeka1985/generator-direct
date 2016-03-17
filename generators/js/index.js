@@ -1,13 +1,21 @@
 'use strict';
 
-var Base = require('../../common/classes/BaseGenerator'),
+var _ = require('lodash'),
     u = require('../../common/utils'),
-    behavior = require('../../common/behaviors/baseBehavior'),
-    _ = require('lodash');
+    classes = require('../../common/classes'),
+    interactions = require('../../common/settings');
 
-module.exports = u.generator.create(Base, behavior, {
+module.exports = u.generator.compose(classes.constructor, classes.behavior, {
 
-    settings: require('./settings'),
+    interactions: interactions.pick([
+        'blockName',
+        'elem',
+        'modName',
+        'modVal',
+        'baseBlock',
+        'implements',
+        'delete'
+    ]),
 
     fileExt: '.js',
 
@@ -25,3 +33,6 @@ module.exports = u.generator.create(Base, behavior, {
     }
 
 });
+
+
+

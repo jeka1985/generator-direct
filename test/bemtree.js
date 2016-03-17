@@ -172,11 +172,7 @@ describe('Вызов генератор direct:bemtree', function () {
 
             desc.asserts.forEach(function(params) {
                 describe('создает файл ' + params.path, function () {
-                    it('именованный и размещенный согласно БЕМ нотации', function () {
-                        assert.file(path.join(root, params.path));
-                    });
-
-                    it('с декларацией соответсвующей параметрам', function () {
+                    it('с содержанием соответсвующим параметрам', function () {
                         assert.fileContent(path.join(root, params.path), params.decl);
                     });
                 });

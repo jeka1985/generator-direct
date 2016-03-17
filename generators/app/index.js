@@ -1,64 +1,67 @@
 'use strict';
 
-var Base = require('../../common/classes/BaseGenerator'),
+var _ = require('lodash'),
     u = require('../../common/utils'),
-    yosay = require('yosay'),
-    behavior = require('../../common/behaviors/baseBehavior'),
-    settings = require('./settings'),
-    path = require('path'),
-    _ = require('lodash');
+    classes = require('../../common/classes'),
+    interactions = require('../../common/settings');
 
-module.exports = u.generator.create(Base, behavior, {
+module.exports = u.generator.compose(classes.constructor, classes.behavior, {
 
-    settings: settings,
+    interactions: interactions.all(),
 
-    _getStartPrompt: function() {
-        var result = Base.prototype._getStartPrompt.apply(this);
+    prompting: _.extend(_.clone(classes.behavior.prompting), {
 
-        result.items.push({
-            type: 'checkbox',
-            name: 'tech',
-            message: 'Выберите технологии',
-            when: !this.props.tech || !this.props.tech.length,
-            choices: Object.keys(settings.tech).map(function(opt) {
-                return {
-                    name: opt,
-                    value: opt,
-                    checked: settings.tech[opt].byDefault
-                }
-            }, this)
-        });
+        tech: function() {
+            var done = this.async(),
+                dataFromNs = function(namespace) {
+                    var data = namespace.split(':');
 
-        return result;
+                    return { root: data[0], name: data[1] };
+                },
+                rootName = this.rootGeneratorName().split('-')[1],
+                selfName = dataFromNs(this.options.namespace).name,
+                keys = this.env.namespaces().reduce(function(result, namespace) {
+                    var data = dataFromNs(namespace);
+
+                    (rootName == data.root && data.name !== selfName) && result.push(data.name);
+
+                    return result;
+                }.bind(this), []);
+
+            !this.options.tech ?
+                this.prompt([
+                    {
+                        type: 'checkbox',
+                        name: 'tech',
+                        pageSize: keys.length,
+                        message: 'Which techs would you like to include?',
+                        store: true,
+                        default: keys.slice(0, 3),
+                        choices: keys.map(function(opt) {
+                            return { name: opt, value: opt };
+                        }, this)
+                    }
+                ], function (answers) {
+                    this.options.tech = answers.tech.join(',');
+                    done();
+                }.bind(this)):
+                done();
+        }
+    }),
+
+    _getFileExt: function(entity) {
+        return u.resultWith(this.env.get('direct:' + entity.tech).prototype, 'fileExt', [entity]);
     },
 
-    writing: function() {
+    _create: function() {
         this.props.tech.forEach(function(tech) {
             this.composeWith(['direct', tech].join(':'), {
                 args: [this.props.blockName.join(',')],
-                options: _.pick(this.options, _.keys(this.props))
+                options: _.pick(this.options, this.interactions.map(function(item) {
+                    return item.name;
+                }))
             });
         }, this);
-    },
-
-    end: function() {
-        this._prompt({
-            items: [
-                {
-                    type: 'confirm',
-                    name: 'approve',
-                    message: yosay('Все готово, сохраняем ?')
-                }
-            ],
-            callback: function (answers) {
-                !answers.approve && u.file.remove(u.generator.cartesianProps(this.props, settings.props).map(function(data) {
-                    return path.join(
-                        settings.root,
-                        u.bem.getPath(data)) + _.result(this.env.get('direct:' + data.tech).prototype, 'fileExt');
-                }, this));
-            }
-        });
     }
 
 });
-

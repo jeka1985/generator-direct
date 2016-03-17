@@ -1,13 +1,21 @@
 'use strict';
 
-var Base = require('../../common/classes/BaseGenerator'),
-    u = require('../../common/utils'),
-    behavior = require('../../common/behaviors/baseBehavior'),
-    settings = require('./settings');
+var u = require('../../common/utils'),
+    classes = require('../../common/classes'),
+    interactions = require('../../common/settings');
 
-module.exports = u.generator.create(Base, behavior, {
+module.exports = u.generator.compose(classes.constructor, classes.behavior, {
 
-    settings: settings,
+    interactions: interactions.pick([
+        'blockName',
+        'elem',
+        'modName',
+        'modVal',
+        'baseBlock',
+        'baseModel',
+        'implements',
+        'delete'
+    ]),
 
     fileExt: '.deps.js',
 

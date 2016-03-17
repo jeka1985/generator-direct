@@ -11,7 +11,7 @@ module.exports = {
      * @param {Object} overwrite - объект переопределения
      * @returns {Object}
      */
-    create: function(baseClass, mixins, overwrite) {
+    compose: function(baseClass, mixins, overwrite) {
         var generator = baseClass.extend();
 
         _.forEach(_.isArray(mixins) ? mixins : [mixins], function(mix) {
@@ -62,6 +62,9 @@ module.exports = {
                     val ?
                         val.trim().split(',') :
                         [];
+            },
+            boolean: function(val) {
+                return !!val;
             }
         };
 

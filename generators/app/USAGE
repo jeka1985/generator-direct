@@ -1,0 +1,45 @@
+Glossary
+
+  App generator - combining generator, generates files via composing Sub generators
+  Sub generator - specialized for only Tech generator, directly creates files
+  Interactions  - Options and arguments applicably by generator, base for Props
+  Props         - Composed from options and arguments object formatted data.
+  Entity        - Context object, roughly BEM block with optional params like elem, mod and so on.
+  Scope         - Result of Cartesian Product of provided props.
+  Tech          - Technology file with specific extension and content.
+
+Key concepts
+
+  Workflow :
+    - Define generator Interactions, set applicable arguments and options.
+    - Ask for additional information, like configs, context data.
+    - Create Props, base on Interactions, format options and arguments data and prepare in for Scope calculation.
+    - Calculate scope, get list of affected entities to apply action method.
+    - Execute action method, create or delete file.
+
+  Each generator works in 2  possible cases: creating (by default) and removing files ( --d option).
+
+  Scope
+
+    To support multi-entities actions, generators use Cartesian Product (https://en.wikipedia.org/wiki/Cartesian_product)
+    algorithm to calculate set from provided Props. Before calculation generator filters Props base on Interactions
+    `combine: true` flag (by default they are blockName, elem, modName, modVal and tech).
+
+    As an example, consider following command run:
+
+      yo direct block1,block2 --m type --v inline,block --tech css
+
+    As a result 4 files will be generated
+
+      block1/_type/block1_type_inline.css
+      block1/_type/block1_type_block.css
+      block2/_type/block2_type_inline.css
+      block2/_type/block2_type_block.css
+
+Examples
+
+  yo direct block1 --t css                                         - generate tech for single entity
+  yo direct block1,block2 --m some-mod --v modval,modval2 --t md   - generate tech for multi entities
+  yo direct block1 --t js,md,css                                   - generate multi Tech for entity
+  yo direct block1 --t js --bb b-some                              - generate tech with addition params
+  yo direct block1,block2 --t css,md --d                           - delete tech list for scope
