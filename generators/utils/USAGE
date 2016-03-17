@@ -1,0 +1,8 @@
+For glossary, and key concepts information run
+    yo direct --h
+
+Examples
+
+  yo direct:utils b-some-block                           - generate tech for single entity
+  yo direct:utils block1,block2 --m some-mod --v modval  - generate tech for multi entities
+  yo direct:utils block1,block2 --d                      - delete tech list for scope

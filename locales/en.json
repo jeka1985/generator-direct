@@ -1,0 +1,14 @@
+{
+  "ASK_BLOCK_NAME": "Please, provide name or comma-separated block names",
+  "ASK_MOD_VAL": "Please, provide value or comma-separated modifier values",
+  "CHOOSE_ROOT": "Please, provide root path",
+  "CHOOSE_LANG": "Please, select language",
+  "EN": "English",
+  "RU": "Russian",
+  "NOTHING_TO_DEL": "Nothing to delete, no files found for this scope",
+  "DEL": "delete",
+  "ALL_ITEMS %s": "All (%s items)",
+  "CHOOSE_FROM_LIST": "Choose from list",
+  "FILES": "Files",
+  "APPROVE_DELETION": "Do you confirm deletion?"
+}

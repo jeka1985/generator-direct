@@ -1,12 +1,13 @@
 {
   "name": "generator-direct",
-  "version": "0.3.2",
-  "description": "scaffolding tool for yandex.direct development (BEM)",
+  "version": "0.4.0",
+  "description": "Scaffolding tool for BEM projects, specialized for yandex.direct development",
   "homepage": "https://github.com/jeka1985/generator-direct",
   "author": "Eugene Yemelin <dr.jeka@gmail.com>",
   "files": [
     "generators",
-    "common"
+    "common",
+    ".yo-rc.json"
   ],
   "main": "generators/app/index.js",
   "keywords": [
@@ -18,7 +19,8 @@
     "yeoman-generator": "0.22.5",
     "chalk": "^1.0.0",
     "yosay": "1.1.0",
-    "lodash": "4.1.0"
+    "lodash": "4.1.0",
+    "i18n": "0.8.1"
   },
   "repository": {
     "type": "git",
