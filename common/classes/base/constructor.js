@@ -28,7 +28,7 @@ module.exports = yeoman.Base.extend({
             register: this.iText,
             defaultLocale: this.config.get('lang'),
             indent: "  ",
-            directory: './locales',
+            directory: path.join(__dirname, '../../../locales'),
             syncFiles: true
         });
 
