@@ -115,6 +115,10 @@ $ yo direct b-block-name --tech js,css,deps --d
   Название интерфейса.
   Если создается deps файл, то интерфейс будет автоматически включен в секцию mustDeps
   
+* `--delete` или `--d`
+
+  Флаг удаления.
+  
 
 ## Создание сущностей
 
@@ -174,10 +178,16 @@ $ yo direct b-some --tech model,deps --baseModel m-some
 $ yo direct b-some --tech js,deps --baseBlock i-glue
 ```
 
-создать интерфейс (Экспериментальный генератор)
+создать интерфейс
 
 ```
 $ yo direct i-interface --tech interface,deps
+```
+
+удаление технологий
+
+```
+$ yo direct b-some --tech interface,deps,md --d
 ```
 
 [npm-image]: https://badge.fury.io/js/generator-direct.svg
