@@ -7,6 +7,8 @@ var _ = require('lodash'),
 
 module.exports = u.generator.compose(classes.constructor, classes.behavior, {
 
+    descKey: 'APP_GENERATOR_DESC',
+
     interactions: interactions.all(),
 
     prompting: _.extend(_.clone(classes.behavior.prompting), {
@@ -34,7 +36,7 @@ module.exports = u.generator.compose(classes.constructor, classes.behavior, {
                         type: 'checkbox',
                         name: 'tech',
                         pageSize: keys.length,
-                        message: 'Which techs would you like to include?',
+                        message: this.iText.__('CHOOSE_TECH'),
                         store: true,
                         default: keys.slice(0, 3),
                         choices: keys.map(function(opt) {

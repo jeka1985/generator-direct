@@ -1,6 +1,7 @@
 'use strict';
 
-var u = require('../../utils');
+var u = require('../../utils'),
+    _ = require('lodash');
 
 module.exports = {
 
@@ -49,8 +50,12 @@ module.exports = {
                     message : this.iText.__('ASK_BLOCK_NAME'),
                     store: true,
                     validate: function(input) {
-                        return u.bem.validateString(input);
-                    }
+                        var result = u.bem.validateString(input);
+
+                        return _.isObject(result) ?
+                            this.iText.__(result.err) :
+                            result;
+                    }.bind(this)
                 }],
                 callback: function (answers) {
                     this.blockName = answers.blockName;
@@ -67,8 +72,12 @@ module.exports = {
                     store: true,
                     message : this.iText.__('ASK_MOD_VAL'),
                     validate: function(input) {
-                        return u.bem.validateString(input);
-                    }
+                        var result = u.bem.validateString(input);
+
+                        return _.isObject(result) ?
+                            this.iText.__(result.err) :
+                            result;
+                    }.bind(this)
                 }],
                 callback: function (answers) {
                     this.options.modVal = answers.modVal;
