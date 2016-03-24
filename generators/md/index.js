@@ -6,6 +6,8 @@ var u = require('../../common/utils'),
 
 module.exports = u.generator.compose(classes.constructor, classes.behavior, {
 
+    descKey: 'MD_GENERATOR_DESC',
+
     interactions: interactions.all(),
 
     fileExt: '.md',

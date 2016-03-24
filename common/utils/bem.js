@@ -133,15 +133,15 @@ module.exports = {
     /**
      * Проверяет строку на корректность
      * @param {Function} input - входная строка
-     * @returns {Boolean|String}
+     * @returns {Object|String}
      */
     validateString: function(input) {
         if(!input.length) {
-            return 'Строка пуста';
+            return { err: 'ERR_EMPTY_STR' };
         }
 
         if(!/[a-zA-Z]/.test(input)) {
-            return 'Значение некоректно, используйте [a-zA-Z]';
+            return { err: 'ERR_INCORRECT_FORMAT' };
         }
 
         return true;

@@ -6,7 +6,7 @@ var declaration = [
     {
         name: 'blockName',
         kind: 'argument',
-        desc:'Block name / Имя блока',
+        descKey: 'BLOCK_NAME',
         valType: 'multi',
         combine: true,
         required: false
@@ -14,7 +14,7 @@ var declaration = [
     {
         name: 'elem',
         kind: 'option',
-        desc:'Block elem name / Имя элемента блока',
+        descKey: 'ELEM_NAME',
         valType: 'multi',
         combine: true,
         alias: 'e'
@@ -22,7 +22,7 @@ var declaration = [
     {
         name: 'modName',
         kind: 'option',
-        desc:'Block modifier name / Имя модификатора блока',
+        descKey: 'MODIFIER_NAME',
         valType: 'multi',
         combine: true,
         alias: 'm'
@@ -30,7 +30,7 @@ var declaration = [
     {
         name: 'modVal',
         kind: 'option',
-        desc:'Block modifier value / Значение модификатора блока',
+        descKey: 'MODIFIER_VAL',
         valType: 'multi',
         combine: true,
         alias: 'v'
@@ -38,7 +38,7 @@ var declaration = [
     {
         name: 'tech',
         kind: 'option',
-        desc: 'Tech list / Список создаваемых технологий для блока',
+        descKey: 'TECH_LIST',
         valType: 'multi',
         combine: true,
         alias: 't'
@@ -46,28 +46,28 @@ var declaration = [
     {
         name: 'baseBlock',
         kind: 'option',
-        desc:'Base block name / Имя базового блока',
+        descKey: 'BASE_BLOCK_NAME',
         valType: 'single',
         alias: 'bb'
     },
     {
         name: 'baseModel',
         kind: 'option',
-        desc:'Base model name / Имя базовой модели',
+        descKey: 'BASE_MODEL_NAME',
         valType: 'single',
         alias: 'bm'
     },
     {
         name: 'implements',
         kind: 'option',
-        desc:'Interface name / Имя интерфейса блока',
+        descKey: 'INTERFACE_NAME',
         valType: 'single',
         alias: 'i'
     },
     {
         name: 'delete',
         kind: 'option',
-        desc:'Delete action flag / Флаг удаления',
+        descKey: 'DELETE_FLAG',
         valType: 'boolean',
         alias: 'd'
     }
@@ -97,4 +97,4 @@ module.exports = {
     all: function() {
         return _.clone(declaration)
     }
-}
+};

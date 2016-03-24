@@ -7,6 +7,8 @@ var _ = require('lodash'),
 
 module.exports = u.generator.compose(classes.constructor, classes.behavior, {
 
+    descKey: 'JS_GENERATOR_DESC',
+
     interactions: interactions.pick([
         'blockName',
         'elem',

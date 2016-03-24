@@ -12,8 +12,10 @@ module.exports = yeoman.Base.extend({
     constructor: function() {
         yeoman.Base.apply(this, arguments);
 
-        this._defineInterations(this.interactions);
         this._initI18n();
+        this._defineInterations(this.interactions);
+
+        this.description = this.iText.__(this.descKey);
     },
 
     /**
@@ -51,7 +53,9 @@ module.exports = yeoman.Base.extend({
      */
     _defineInterations: function(params) {
         _.forEach(params, function(data) {
-            this[data.kind](data.name, data);
+            this[data.kind](data.name, _.extend(data, {
+                desc: this.iText.__(data.descKey)
+            }));
         }.bind(this));
     },
 

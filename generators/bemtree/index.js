@@ -4,6 +4,8 @@ var u = require('../../common/utils'),
 
 module.exports = u.generator.compose(classes.constructor, classes.behavior, {
 
+    descKey: 'BEMTREE_GENERATOR_DESC',
+
     interactions: interactions.pick([
         'blockName',
         'elem',
