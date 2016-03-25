@@ -31,14 +31,17 @@ describe('Вызов генератор direct', function () {
 
                 it('создает файл технологии с помощью саб генератора', function () {
                     assert.file([
-                        path.join(root, 't-block/t-block' + this.app.generator._getFileExt(({ blockName: 't-block', tech: tech })))
+                        path.join(root, 't-block/t-block' + this.app.generator._getFileExt({
+                            blockName: 't-block',
+                            tech: tech
+                        }))
                     ]);
                 });
             });
 
             describe('как prompt ответом', function () {
 
-                before(function (done) {
+                beforeEach(function (done) {
                     this.app = helpers.run(require.resolve('../generators/app'))
                         .withArguments(['t-block'])
                         .withPrompts({ tech: [tech] })
@@ -48,7 +51,10 @@ describe('Вызов генератор direct', function () {
 
                 it('создает файл технологии с помощью саб генератора', function () {
                     assert.file([
-                        path.join(root, 't-block/t-block' + this.app.generator._getFileExt(({ blockName: 't-block', tech: tech })))
+                        path.join(root, 't-block/t-block' + this.app.generator._getFileExt({
+                            blockName: 't-block',
+                            tech: tech
+                        }))
                     ]);
                 });
             })

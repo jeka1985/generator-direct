@@ -70,11 +70,10 @@ module.exports = yeoman.Base.extend({
     _create: function(entities) {
         entities.forEach(function(data) {
             this.fs.copyTpl(
-                this.templatePath(this.tmpFileName || 'index.txt'),
+                this.templatePath(u.resultWith(this, 'tmpFileName', [data]) || 'index.txt'),
                 this.destinationPath(this._getFilePath(data)),
                 this._getData(_.extend(this.props, data)));
         }, this);
-
     },
 
     _getFileExt: function(data) {

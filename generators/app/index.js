@@ -52,7 +52,7 @@ module.exports = u.generator.compose(classes.constructor, classes.behavior, {
     }),
 
     _getFileExt: function(entity) {
-        return u.resultWith(this.env.get('direct:' + entity.tech).prototype, 'fileExt', [entity]);
+        return u.resultWith(this.env.create('direct:' + entity.tech), 'fileExt', [entity]);
     },
 
     _create: function() {
