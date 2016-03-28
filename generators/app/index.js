@@ -30,24 +30,23 @@ module.exports = u.generator.compose(classes.constructor, classes.behavior, {
                     return result;
                 }.bind(this), []);
 
-            !this.options.tech ?
-                this.prompt([
-                    {
-                        type: 'checkbox',
-                        name: 'tech',
-                        pageSize: keys.length,
-                        message: this.iText.__('CHOOSE_TECH'),
-                        store: true,
-                        default: keys.slice(0, 3),
-                        choices: keys.map(function(opt) {
-                            return { name: opt, value: opt };
-                        }, this)
-                    }
-                ], function (answers) {
+            this._ask({
+                questions: [{
+                    type: 'checkbox',
+                    name: 'tech',
+                    pageSize: keys.length,
+                    message: this.iText.__('CHOOSE_TECH'),
+                    store: true,
+                    default: keys.slice(0, 3),
+                    choices: keys.map(function(opt) {
+                        return { name: opt, value: opt };
+                    }, this)
+                }],
+                callback: function (answers) {
                     this.options.tech = answers.tech.join(',');
-                    done();
-                }.bind(this)):
-                done();
+                },
+                term: !this.options.tech
+            });
         }
     }),
 
