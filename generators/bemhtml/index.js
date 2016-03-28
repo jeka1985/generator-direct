@@ -1,10 +1,15 @@
 'use strict';
 
-var u = require('../../common/utils'),
+var _ = require('lodash'),
+    u = require('../../common/utils'),
     classes = require('../../common/classes'),
     interactions = require('../../common/settings');
 
 module.exports = u.generator.compose(classes.constructor, classes.behavior, {
+
+    syntaxTypes: ['js', 'compact'],
+
+    defaultSyntax: 'compact',
 
     descKey: 'BEMHTML_GENERATOR_DESC',
 
@@ -13,13 +18,30 @@ module.exports = u.generator.compose(classes.constructor, classes.behavior, {
         'elem',
         'modName',
         'modVal',
-        'delete'
+        'delete',
+        'bemhtml_syntax'
     ]),
 
-    fileExt: '.bemhtml',
+    tmpFileName: function() {
+        return this._getSyntaxType() + '.txt';
+    },
+
+    fileExt: function() {
+        return this._getSyntaxType() == 'js' ? '.bemhtml.js' : '.bemhtml';
+    },
+
+    _getSyntaxType: function() {
+        var options = this.options['bemhtml-syntax'];
+
+        return _.includes(this.syntaxTypes, options) ? options : this.defaultSyntax;
+    },
 
     _getData: function(inputData) {
-        return { declaration: u.bem.getTplDecl(inputData.blockName, inputData) };
+        return {
+            declaration: this._getSyntaxType() == 'js' ?
+                u.bem.getName(inputData) :
+                u.bem.getTplDecl(inputData.blockName, inputData)
+        };
     }
 
 });

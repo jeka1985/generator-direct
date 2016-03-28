@@ -70,7 +70,14 @@ var declaration = [
         descKey: 'DELETE_FLAG',
         valType: 'boolean',
         alias: 'd'
+    },
+    {
+        name: 'bemhtml-syntax',
+        kind: 'option',
+        descKey: 'BEMHTML_SYNTAX',
+        valType: 'single'
     }
+
 ];
 
 module.exports = {
@@ -85,13 +92,13 @@ module.exports = {
     },
 
     base: function() {
-        this.pick([
+        return this.pick([
             'blockName',
             'elem',
             'modName',
             'modVal',
             'delete'
-        ])
+        ]);
     },
 
     all: function() {

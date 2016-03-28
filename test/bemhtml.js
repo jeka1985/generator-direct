@@ -16,6 +16,22 @@ describe('Вызов генератор direct:bemhtml', function () {
             }]
         },
         {
+            title: 'с параметрами --bemhtml-syntax = compact',
+            params: { 'bemhtml-syntax': 'compact' },
+            asserts: [{
+                path: 'foo/foo.bemhtml',
+                decl: 'block foo'
+            }]
+        },
+        {
+            title: 'с параметрами --bemhtml-syntax = js',
+            params: { 'bemhtml-syntax': 'js' },
+            asserts: [{
+                path: 'foo/foo.bemhtml.js',
+                decl: 'block(\'foo\')(\n    content()(\'foo\')\n)'
+            }]
+        },
+        {
             title: 'с параметрами --modName muted --modVal yes',
             params: {
                 modName: 'muted',

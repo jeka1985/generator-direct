@@ -34,5 +34,6 @@
   "MODEL_GENERATOR_DESC": "Use to declare model (DataModel, ViewModel)",
   "TEST_GENERATOR_DESC": "Use to describe entity test cases",
   "UTILS_GENERATOR_DESC": "Use to declare entity utilites",
-  "BH_GENERATOR_DESC": "Use for BH template declaration"
+  "BH_GENERATOR_DESC": "Use for BH template declaration",
+  "BEMHTML_SYNTAX": "Type of syntax for BEMHTML (compact or js)"
 }
