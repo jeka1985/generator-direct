@@ -1,0 +1,4 @@
+bh.match('<%- declaration%>', function(ctx) {
+    ctx
+        .content('<%- declaration%>');
+});

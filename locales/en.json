@@ -33,5 +33,6 @@
   "MD_GENERATOR_DESC": "Use to provide block documentation",
   "MODEL_GENERATOR_DESC": "Use to declare model (DataModel, ViewModel)",
   "TEST_GENERATOR_DESC": "Use to describe entity test cases",
-  "UTILS_GENERATOR_DESC": "Use to declare entity utilites"
+  "UTILS_GENERATOR_DESC": "Use to declare entity utilites",
+  "BH_GENERATOR_DESC": "Use for BH template declaration"
 }
