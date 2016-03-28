@@ -103,7 +103,8 @@ $ yo direct b-block-name --tech js,css,deps --d
 - direct:js
 - direct:model
 - direct:interface
-- direct:bemhtml
+- direct:bemhtml - поддерживает компактный и JS (по-умолчанию) синтаксис, для настройки используйте флаг ```bemhtml-syntax```
+- direct:bh
 - direct:bemtree
 - direct:css
 - direct:test
@@ -152,6 +153,10 @@ $ yo direct b-block-name --tech js,css,deps --d
 * `--delete` или `--d`
 
   Флаг удаления.
+  
+* `--bemhtml-syntax`
+
+  Синтакс BEMHTML шаблона (js или compact)
   
 
 ## Создание сущностей
