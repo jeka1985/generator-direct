@@ -41,10 +41,6 @@ module.exports = {
         if(isElem) data.elem = opts.elem;
         if(opts.modName.length && opts.modVal.length) data[isElem ? 'elemMod' : 'mod'] = [opts.modName, opts.modVal];
 
-
-        console.log(data);
-
-
         return this._getDeclString(data, false, ' ');
     },
 

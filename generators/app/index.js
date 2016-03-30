@@ -14,8 +14,7 @@ module.exports = u.generator.compose(classes.constructor, classes.behavior, {
     prompting: _.extend(_.clone(classes.behavior.prompting), {
 
         tech: function() {
-            var done = this.async(),
-                dataFromNs = function(namespace) {
+            var dataFromNs = function(namespace) {
                     var data = namespace.split(':');
 
                     return { root: data[0], name: data[1] };
