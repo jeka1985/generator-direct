@@ -12,7 +12,7 @@ describe('Вызов генератор direct:bemtree', function () {
             params: {},
             asserts: [{
                 path: 'foo/foo.bemtree.xjst',
-                decl: 'block foo'
+                decl: 'block foo {\n'
             }]
         },
         {

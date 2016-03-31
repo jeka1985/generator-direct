@@ -12,7 +12,7 @@ describe('Вызов генератор direct:bemhtml', function () {
             params: {},
             asserts: [{
                 path: 'foo/foo.bemhtml',
-                decl: 'block foo'
+                decl: 'block foo {\n'
             }]
         },
         {
@@ -20,7 +20,7 @@ describe('Вызов генератор direct:bemhtml', function () {
             params: { 'bemhtml-syntax': 'compact' },
             asserts: [{
                 path: 'foo/foo.bemhtml',
-                decl: 'block foo'
+                decl: 'block foo {\n'
             }]
         },
         {
