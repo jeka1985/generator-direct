@@ -11,7 +11,7 @@ module.exports = {
      */
     normalizeName: function(str) {
 
-        return _.kebabCase(str);
+        return str.toLowerCase().replace(/[\W+, _]+/g, '-');
     },
 
     /**
@@ -76,8 +76,8 @@ module.exports = {
      * Возвращает имя папки в БЭМ нотации по заданым параметрам
      * @param {Object} data - параметрв
      * @param {String} data.blockName - имя блока
-     * @param {String} data.elem - имя элемента
-     * @param {String} data.modName - имя модификатора
+     * @param {String} [data.elem] - имя элемента
+     * @param {String} [data.modName] - имя модификатора
      * @returns {String}
      */
     getFolder: function(data) {
