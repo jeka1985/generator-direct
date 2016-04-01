@@ -8,24 +8,17 @@ module.exports = u.generator.compose(classes.constructor, classes.behavior, {
 
     descKey: 'DEPS_GENERATOR_DESC',
 
-    interactions: interactions.pick([
-        'blockName',
-        'elem',
-        'modName',
-        'modVal',
+    interactions: interactions.base().concat(interactions.pick([
         'baseBlock',
         'baseModel',
-        'implements',
-        'delete'
-    ]),
+        'implements'
+    ])),
 
     fileExt: '.deps.js',
 
     _getData: function(inputData) {
         var mustDeps = [],
             shouldDeps = [];
-
-        //shouldDeps.push('i-subscription-manager');
 
         return ['baseBlock', 'baseModel', 'implements'].reduce(function(hash, key) {
 

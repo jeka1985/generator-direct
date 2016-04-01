@@ -9,15 +9,10 @@ module.exports = u.generator.compose(classes.constructor, classes.behavior, {
 
     descKey: 'JS_GENERATOR_DESC',
 
-    interactions: interactions.pick([
-        'blockName',
-        'elem',
-        'modName',
-        'modVal',
+    interactions: interactions.base().concat(interactions.pick([
         'baseBlock',
-        'implements',
-        'delete'
-    ]),
+        'implements'
+    ])),
 
     fileExt: '.js',
 

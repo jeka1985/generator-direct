@@ -13,14 +13,9 @@ module.exports = u.generator.compose(classes.constructor, classes.behavior, {
 
     descKey: 'BEMHTML_GENERATOR_DESC',
 
-    interactions: interactions.pick([
-        'blockName',
-        'elem',
-        'modName',
-        'modVal',
-        'delete',
+    interactions: interactions.base().concat(interactions.pick(
         'bemhtml_syntax'
-    ]),
+    )),
 
     tmpFileName: function() {
         return this._getSyntaxType() + '.txt';

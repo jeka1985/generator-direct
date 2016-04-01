@@ -8,14 +8,7 @@ module.exports = u.generator.compose(classes.constructor, classes.behavior, {
 
     descKey: 'MODEL_GENERATOR_DESC',
 
-    interactions: interactions.pick([
-        'blockName',
-        'elem',
-        'modName',
-        'modVal',
-        'baseModel',
-        'delete'
-    ]),
+    interactions: interactions.base().concat(interactions.pick('baseModel')),
 
     fileExt: function(entity) {
         return /^dm|vm/.test(entity.blockName) ? '.js' : '.vm.js';

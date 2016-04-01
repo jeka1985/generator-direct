@@ -8,13 +8,7 @@ module.exports = u.generator.compose(classes.constructor, classes.behavior, {
 
     descKey: 'BH_GENERATOR_DESC',
 
-    interactions: interactions.pick([
-        'blockName',
-        'elem',
-        'modName',
-        'modVal',
-        'delete'
-    ]),
+    interactions: interactions.base(),
 
     fileExt: '.bh.js',
 
