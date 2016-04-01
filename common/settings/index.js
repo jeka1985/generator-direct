@@ -76,8 +76,14 @@ var declaration = [
         kind: 'option',
         descKey: 'BEMHTML_SYNTAX',
         valType: 'single'
+    },
+    {
+        name: 'level',
+        kind: 'option',
+        descKey: 'REDEFINITION_LEVEL',
+        valType: 'single',
+        alias: 'l'
     }
-
 ];
 
 module.exports = {
@@ -97,7 +103,8 @@ module.exports = {
             'elem',
             'modName',
             'modVal',
-            'delete'
+            'delete',
+            'level'
         ]);
     },
 
