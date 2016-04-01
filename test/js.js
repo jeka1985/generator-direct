@@ -2,7 +2,7 @@
 var test = require('./helper.js'),
     assert = require('yeoman-assert'),
     path = require('path'),
-    root = './desktop.blocks';
+    level = 'desktop.blocks';
 
 describe('Вызов генератор direct:js', function () {
     [
@@ -145,7 +145,7 @@ describe('Вызов генератор direct:js', function () {
             desc.asserts.forEach(function(params) {
                 describe('создает файл ' + params.path, function () {
                     it('с содержанием соответсвующим параметрам', function () {
-                        assert.fileContent(path.join(root, params.path), params.decl);
+                        assert.fileContent(path.join(level, params.path), params.decl);
                     });
                 });
             });

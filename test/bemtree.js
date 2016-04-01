@@ -3,7 +3,7 @@
 var test = require('./helper.js'),
     assert = require('yeoman-assert'),
     path = require('path'),
-    root = './desktop.blocks';
+    level = 'desktop.blocks';
 
 describe('Вызов генератор direct:bemtree', function () {
     [
@@ -45,49 +45,6 @@ describe('Вызов генератор direct:bemtree', function () {
                 path: 'foo/__item/_view/foo__item_view_inline.bemtree.xjst',
                 decl: 'block foo, elem item, elemMod view inline'
             }]
-        },
-
-        {
-            title: 'с множественным значением blockName --modName --modVal',
-            params: {
-                blockName: 'b-some,b-other',
-                modName: 'kind,type',
-                modVal: 'inline,block'
-            },
-            asserts: [
-                {
-                    path: 'b-some/_kind/b-some_kind_inline.bemtree.xjst',
-                    decl: 'block b-some, mod kind inline'
-                },
-                {
-                    path: 'b-some/_type/b-some_type_inline.bemtree.xjst',
-                    decl: 'block b-some, mod type inline'
-                },
-                {
-                    path: 'b-some/_kind/b-some_kind_block.bemtree.xjst',
-                    decl: 'block b-some, mod kind block'
-                },
-                {
-                    path: 'b-some/_type/b-some_type_block.bemtree.xjst',
-                    decl: 'block b-some, mod type block'
-                },
-                {
-                    path: 'b-other/_kind/b-other_kind_inline.bemtree.xjst',
-                    decl: 'block b-other, mod kind inline'
-                },
-                {
-                    path: 'b-other/_type/b-other_type_inline.bemtree.xjst',
-                    decl: 'block b-other, mod type inline'
-                },
-                {
-                    path: 'b-other/_kind/b-other_kind_block.bemtree.xjst',
-                    decl: 'block b-other, mod kind block'
-                },
-                {
-                    path: 'b-other/_type/b-other_type_block.bemtree.xjst',
-                    decl: 'block b-other, mod type block'
-                }
-            ]
         },
         {
             title: 'с множественным значением blockName --elem --modName --modVal',
@@ -173,7 +130,7 @@ describe('Вызов генератор direct:bemtree', function () {
             desc.asserts.forEach(function(params) {
                 describe('создает файл ' + params.path, function () {
                     it('с содержанием соответсвующим параметрам', function () {
-                        assert.fileContent(path.join(root, params.path), params.decl);
+                        assert.fileContent(path.join(level, params.path), params.decl);
                     });
                 });
             });
