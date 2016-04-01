@@ -35,5 +35,6 @@
   "TEST_GENERATOR_DESC": "Используется для описания тестов для блока/элемента",
   "UTILS_GENERATOR_DESC": "Используется для декларации утилит блока/элемента",
   "BEMHTML_SYNTAX": "Вида синтаксиса шаблонов BEMHTML (компактный или js)",
-  "BH_GENERATOR_DESC": "BH_GENERATOR_DESC"
+  "BH_GENERATOR_DESC": "BH_GENERATOR_DESC",
+  "STYLUS_GENERATOR_DESC": "Stylus стили для блока/элемента"
 }
