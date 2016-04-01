@@ -1,6 +1,3 @@
 {
-  "generator-direct": {
-    "root": "./desktop.blocks",
-    "lang": "en"
-  }
+  "generator-direct": { }
 }
