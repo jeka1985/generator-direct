@@ -3,7 +3,7 @@
 var test = require('./helper.js'),
     assert = require('yeoman-assert'),
     path = require('path'),
-    root = './desktop.blocks';
+    level = 'desktop.blocks';
 
 describe('Вызов генератор direct:bh', function () {
     [
@@ -45,48 +45,6 @@ describe('Вызов генератор direct:bh', function () {
                 path: 'foo/__item/_view/foo__item_view_inline.bh.js',
                 decl: 'bh.match(\'foo__item_view_inline\', function(ctx) {\n    ctx\n        .content(\'foo__item_view_inline\');\n});'
             }]
-        },
-        {
-            title: 'с множественным значением blockName --modName --modVal',
-            params: {
-                blockName: 'b-some,b-other',
-                modName: 'kind,type',
-                modVal: 'inline,block'
-            },
-            asserts: [
-                {
-                    path: 'b-some/_kind/b-some_kind_inline.bh.js',
-                    decl: 'bh.match(\'b-some_kind_inline\', function(ctx) {\n    ctx\n        .content(\'b-some_kind_inline\');\n});'
-                },
-                {
-                    path: 'b-some/_type/b-some_type_inline.bh.js',
-                    decl: 'bh.match(\'b-some_type_inline\', function(ctx) {\n    ctx\n        .content(\'b-some_type_inline\');\n});'
-                },
-                {
-                    path: 'b-some/_kind/b-some_kind_block.bh.js',
-                    decl: 'bh.match(\'b-some_kind_block\', function(ctx) {\n    ctx\n        .content(\'b-some_kind_block\');\n});'
-                },
-                {
-                    path: 'b-some/_type/b-some_type_block.bh.js',
-                    decl: 'bh.match(\'b-some_type_block\', function(ctx) {\n    ctx\n        .content(\'b-some_type_block\');\n});'
-                },
-                {
-                    path: 'b-other/_kind/b-other_kind_inline.bh.js',
-                    decl: 'bh.match(\'b-other_kind_inline\', function(ctx) {\n    ctx\n        .content(\'b-other_kind_inline\');\n});'
-                },
-                {
-                    path: 'b-other/_type/b-other_type_inline.bh.js',
-                    decl: 'bh.match(\'b-other_type_inline\', function(ctx) {\n    ctx\n        .content(\'b-other_type_inline\');\n});'
-                },
-                {
-                    path: 'b-other/_kind/b-other_kind_block.bh.js',
-                    decl: 'bh.match(\'b-other_kind_block\', function(ctx) {\n    ctx\n        .content(\'b-other_kind_block\');\n});'
-                },
-                {
-                    path: 'b-other/_type/b-other_type_block.bh.js',
-                    decl: 'bh.match(\'b-other_type_block\', function(ctx) {\n    ctx\n        .content(\'b-other_type_block\');\n});'
-                }
-            ]
         },
         {
             title: 'с множественным значением blockName --elem --modName --modVal',
@@ -172,7 +130,7 @@ describe('Вызов генератор direct:bh', function () {
             desc.asserts.forEach(function(params) {
                 describe('создает файл' + params.path, function () {
                     it('с содержанием соответсвующим параметрам', function () {
-                        assert.fileContent(path.join(root, params.path), params.decl);
+                        assert.fileContent(path.join(level, params.path), params.decl);
                     });
                 });
             });

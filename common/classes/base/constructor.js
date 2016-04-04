@@ -13,6 +13,7 @@ module.exports = yeoman.Base.extend({
         yeoman.Base.apply(this, arguments);
 
         this._initI18n();
+
         this._defineInterations(this.interactions);
 
         this.description = this.iText.__(this.descKey);
@@ -82,7 +83,7 @@ module.exports = yeoman.Base.extend({
 
     _getFilePath: function(data) {
         return path.join(
-            this.config.get('root'),
+            this.options.level || this.config.get('defaultLevel'),
             u.bem.getPath(data)) + this._getFileExt(data);
     },
 
