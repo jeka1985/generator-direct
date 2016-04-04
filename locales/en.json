@@ -1,7 +1,6 @@
 {
   "ASK_BLOCK_NAME": "Please, provide name or comma-separated block names",
   "ASK_MOD_VAL": "Please, provide value or comma-separated modifier values",
-  "CHOOSE_ROOT": "Please, provide root path",
   "CHOOSE_LANG": "Please, select language",
   "EN": "English",
   "RU": "Russian",
@@ -37,5 +36,6 @@
   "BH_GENERATOR_DESC": "Use for BH template declaration",
   "BEMHTML_SYNTAX": "Type of syntax for BEMHTML (compact or js)",
   "STYLUS_GENERATOR_DESC": "Stylus entity styles",
-  "SASS_GENERATOR_DESC": "SASS (SCSS) entity styles"
+  "REDEFINITION_LEVEL": "Redefinition level",
+  "CHOOSE_DEFAULT_REDEFINITION_LEVEL": "Please, provide default redefinition level"
 }

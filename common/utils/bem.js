@@ -58,9 +58,9 @@ module.exports = {
      * Возвращает имя файла в БЭМ нотации по заданым параметрам
      * @param {Object} data - параметры
      * @param {String} data.blockName - имя блока
-     * @param {String} data.elem - имя элемента
-     * @param {String} data.modName - имя модификатора
-     * @param {String} data.modVal - значение модификатора
+     * @param {String} [data.elem] - имя элемента
+     * @param {String} [data.modName] - имя модификатора
+     * @param {String} [data.modVal] - значение модификатора
      * @returns {String}
      */
     getName: function(data) {

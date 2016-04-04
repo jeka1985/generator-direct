@@ -7,21 +7,6 @@ module.exports = {
 
     prompting: {
 
-        root: function() {
-            this._ask({
-                questions: [{
-                    type: 'input',
-                    name: 'root',
-                    message: this.iText.__('CHOOSE_ROOT'),
-                    default: './desktop.blocks'
-                }],
-                callback: function (answers) {
-                    this.config.set(answers);
-                },
-                term: !this.config.get('root')
-            });
-        },
-
         lang: function() {
             this._ask({
                 questions: [{
@@ -39,6 +24,21 @@ module.exports = {
                     this.iText.setLocale(answers.lang);
                 },
                 term: !this.config.get('lang')
+            });
+        },
+
+        defaultLevel: function() {
+            this._ask({
+                questions: [{
+                    type: 'input',
+                    name: 'defaultLevel',
+                    message: this.iText.__('CHOOSE_DEFAULT_REDEFINITION_LEVEL'),
+                    default: 'desktop.blocks'
+                }],
+                callback: function (answers) {
+                    this.config.set(answers);
+                },
+                term: !this.config.get('defaultLevel')
             });
         },
 
