@@ -12,7 +12,7 @@ describe('Генератор direct:css', function () {
             params: {},
             asserts: [{
                 path: 'foo/foo.css',
-                decl: '.foo'
+                decl: '.foo\n{'
             }]
         },
         {
@@ -23,7 +23,7 @@ describe('Генератор direct:css', function () {
             },
             asserts: [{
                 path: 'foo/_muted/foo_muted_yes.css',
-                decl: '.foo_muted_yes'
+                decl: '.foo_muted_yes\n{'
             }]
         },
         {
@@ -31,7 +31,7 @@ describe('Генератор direct:css', function () {
             params: { elem: 'item' },
             asserts: [{
                 path: 'foo/__item/foo__item.css',
-                decl: '.foo__item'
+                decl: '.foo__item\n{'
             }]
         },
         {
@@ -43,7 +43,7 @@ describe('Генератор direct:css', function () {
             },
             asserts: [{
                 path: 'foo/__item/_view/foo__item_view_inline.css',
-                decl: '.foo__item_view_inline'
+                decl: '.foo__item_view_inline\n{'
             }]
         },
         {
@@ -57,67 +57,67 @@ describe('Генератор direct:css', function () {
             asserts: [
                 {
                     path: 'b-some/__wrap/_kind/b-some__wrap_kind_inline.css',
-                    decl: '.b-some__wrap_kind_inline'
+                    decl: '.b-some__wrap_kind_inline\n{'
                 },
                 {
                     path: 'b-some/__wrap/_type/b-some__wrap_type_inline.css',
-                    decl: '.b-some__wrap_type_inline'
+                    decl: '.b-some__wrap_type_inline\n{'
                 },
                 {
                     path: 'b-some/__wrap/_kind/b-some__wrap_kind_block.css',
-                    decl: '.b-some__wrap_kind_block'
+                    decl: '.b-some__wrap_kind_block\n{'
                 },
                 {
                     path: 'b-some/__wrap/_type/b-some__wrap_type_block.css',
-                    decl: '.b-some__wrap_type_block'
+                    decl: '.b-some__wrap_type_block\n{'
                 },
                 {
                     path: 'b-some/__item/_kind/b-some__item_kind_inline.css',
-                    decl: '.b-some__item_kind_inline'
+                    decl: '.b-some__item_kind_inline\n{'
                 },
                 {
                     path: 'b-some/__item/_type/b-some__item_type_inline.css',
-                    decl: '.b-some__item_type_inline'
+                    decl: '.b-some__item_type_inline\n{'
                 },
                 {
                     path: 'b-some/__item/_kind/b-some__item_kind_block.css',
-                    decl: '.b-some__item_kind_block'
+                    decl: '.b-some__item_kind_block\n{'
                 },
                 {
                     path: 'b-some/__item/_type/b-some__item_type_block.css',
-                    decl: '.b-some__item_type_block'
+                    decl: '.b-some__item_type_block\n{'
                 },
                 {
                     path: 'b-other/__wrap/_kind/b-other__wrap_kind_inline.css',
-                    decl: '.b-other__wrap_kind_inline'
+                    decl: '.b-other__wrap_kind_inline\n{'
                 },
                 {
                     path: 'b-other/__wrap/_type/b-other__wrap_type_inline.css',
-                    decl: '.b-other__wrap_type_inline'
+                    decl: '.b-other__wrap_type_inline\n{'
                 },
                 {
                     path: 'b-other/__wrap/_kind/b-other__wrap_kind_block.css',
-                    decl: '.b-other__wrap_kind_block'
+                    decl: '.b-other__wrap_kind_block\n{'
                 },
                 {
                     path: 'b-other/__wrap/_type/b-other__wrap_type_block.css',
-                    decl: '.b-other__wrap_type_block'
+                    decl: '.b-other__wrap_type_block\n{'
                 },
                 {
                     path: 'b-other/__item/_kind/b-other__item_kind_inline.css',
-                    decl: '.b-other__item_kind_inline'
+                    decl: '.b-other__item_kind_inline\n{'
                 },
                 {
                     path: 'b-other/__item/_type/b-other__item_type_inline.css',
-                    decl: '.b-other__item_type_inline'
+                    decl: '.b-other__item_type_inline\n{'
                 },
                 {
                     path: 'b-other/__item/_kind/b-other__item_kind_block.css',
-                    decl: '.b-other__item_kind_block'
+                    decl: '.b-other__item_kind_block\n{'
                 },
                 {
                     path: 'b-other/__item/_type/b-other__item_type_block.css',
-                    decl: '.b-other__item_type_block'
+                    decl: '.b-other__item_type_block\n{'
                 }
             ]
         }

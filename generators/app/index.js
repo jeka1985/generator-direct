@@ -37,7 +37,7 @@ module.exports = u.generator.compose(classes.constructor, classes.behavior, {
                     message: this.iText.__('CHOOSE_TECH'),
                     store: true,
                     default: keys.slice(0, 3),
-                    choices: keys.map(function(opt) {
+                    choices: keys.sort().map(function(opt) {
                         return { name: opt, value: opt };
                     }, this)
                 }],
