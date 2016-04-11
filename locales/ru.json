@@ -33,6 +33,8 @@
   "MODEL_GENERATOR_DESC": "Используется для декларации моделей",
   "TEST_GENERATOR_DESC": "Используется для описания тестов для блока/элемента",
   "UTILS_GENERATOR_DESC": "Используется для декларации утилит блока/элемента",
+  "STYLUS_GENERATOR_DESC": "Stylus стили для блока/элемента",
+  "SASS_GENERATOR_DESC": "SASS (SCSS) стили для блока/элемента",
   "BEMHTML_SYNTAX": "Вид синтаксиса шаблонов BEMHTML (компактный или js)",
   "BH_GENERATOR_DESC": "Используется для декларации BH шаблонов",
   "REDEFINITION_LEVEL": "Уровень переопределения",

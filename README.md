@@ -103,10 +103,11 @@ $ yo direct b-block-name --tech js,css,deps --d
 - direct:js
 - direct:model
 - direct:interface
-- direct:bemhtml - поддерживает компактный и JS (по-умолчанию) синтаксис, для настройки используйте флаг ```bemhtml-syntax```
+- direct:bemhtml - поддерживает компактный и JS синтаксис, для настройки используйте флаг ```bemhtml-syntax```
 - direct:bh
 - direct:bemtree
 - direct:css
+- direct:stylus
 - direct:test
 - direct:md
 - direct:utils
@@ -157,6 +158,9 @@ $ yo direct b-block-name --tech js,css,deps --d
 * `--bemhtml-syntax`
 
   Синтакс BEMHTML шаблона (js или compact)
+
+* `--level` или `--l`
+  Уровень переопределения (https://en.bem.info/method/key-concepts/#redefinition-level)
   
 
 ## Создание сущностей
@@ -165,6 +169,12 @@ $ yo direct b-block-name --tech js,css,deps --d
 
 ```
 yo direct b-some
+```
+
+создание блока на заданом уровне переопределения 
+
+```
+yo direct b-some --l common.blocks
 ```
 
 создать модификатор блока
