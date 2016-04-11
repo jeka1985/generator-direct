@@ -9,22 +9,17 @@ module.exports = u.generator.compose(classes.constructor, classes.behavior, {
 
     descKey: 'JS_GENERATOR_DESC',
 
-    interactions: interactions.pick([
-        'blockName',
-        'elem',
-        'modName',
-        'modVal',
+    interactions: interactions.base().concat(interactions.pick([
         'baseBlock',
-        'implements',
-        'delete'
-    ]),
+        'implements'
+    ])),
 
     fileExt: '.js',
 
     _getData: function(inputData) {
 
         return {
-            declaration: u.bem.getJsDeclaration(_.without(_.keys(this.props), 'blockName').reduce(function(decl, key) {
+            declaration: u.bem.getJsDeclaration(_.without(_.keys(this.props), 'blockName', 'level').reduce(function(decl, key) {
                 var data = inputData[key];
 
                 if (data) decl[key] = data;
