@@ -108,6 +108,7 @@ $ yo direct b-block-name --tech js,css,deps --d
 - direct:bemtree
 - direct:css
 - direct:stylus
+- direct:sass (scss)
 - direct:test
 - direct:md
 - direct:utils
