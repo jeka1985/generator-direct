@@ -1,43 +1,42 @@
 # generator-direct [![Dependency Status][daviddm-image]][daviddm-url] [![Coverage Status](https://coveralls.io/repos/github/jeka1985/generator-direct/badge.svg?branch=master)](https://coveralls.io/github/jeka1985/generator-direct?branch=master)
 
-> Данный генератор для Yeoman берет на себя рутинные действия при создании блоков, элементов и модификаторов.
-В работе генератор использует самостоятельные саб-генераторы для создания файлов технологий, это позволяет создавать как наборы так и отдельные файлы. Может быть полезен проектам, использующим BEM.
+> A scaffolder tool for generating blocks, elements and modifiers files (https://en.bem.info/method/key-concepts/). This generator was created as yandex.direct development tool, but will be usefull for any BEM projects.
 
-## Установка 
+## Install 
 ```
 $ npm install (-g) yo
 $ npm install (-g) generator-direct
 ```
 
-## Использование
+## Usage
 
-### Создание
-Для создания файлов технологий генератору передаются данные сущности. Их можно задать в интерактивном режиме, либо передать значения в виде параметров.
+### Creating files
 
-Работа в интерактивном режиме начинается с команды
+Generation starts with passing entity informantion. You can do it via cli params or use interactive mode:
+For quick start lets begin with interactive mode:
 ```
 yo direct
 ```
 ![interactive](https://cloud.githubusercontent.com/assets/3533939/13979794/e2408002-f0eb-11e5-82b1-870a439542e7.png)
 
-Генератор уточнит необходимую информацию и создаст файлы технологий.
+After few detailing questions files will be created 
 
 ![interactive result](https://cloud.githubusercontent.com/assets/3533939/13979792/e05141a0-f0eb-11e5-86ec-247c681575d4.png)
 
-Также вы можете передать данные в параметрах:
+Also you may pass entity data via params:
 ```
 $ yo direct b-block --tech js
 ```
-Для получения информации о принимаемых параметрах, запустите генератор с флагом ```--help ```
+For acceptable params documentation run generator with ```--help ``` flag
 
-### Создание файлов для нескольких сущностей
+### Multi-creating 
 
-На практике часто требуется создать файлы технологии сразу для нескольких сущностей, например, шаблоны для нескольких модификаций блока. Для этого передайте строку, разделенную запятыми, в значении параметра ```--v```.В примере ниже создаются файлы CSS и JS сразу для двух модификаторов блока.
+A quite frequent task is creating tech files for few entites at once, for example create moodifier for block with 2 two values. You can pass comma-separated string as ```--v``` param value to rich this goal. Lets create JS and CSS to both values of ```b-some``` modifier ```view```   
 
 ```
 $ yo direct b-some --m view --v inline,block --tech js,css
 ```
-Результатом выполнения будет создание 4 файлов:
+4 files will be generated:
 
 ```
 b-some/_view/b-some_view_inline.js
@@ -46,13 +45,13 @@ b-some/_view/b-some_view_inline.css
 b-some/_view/b-some_view_block.css
 ```
 
-Множественные значения можно передавать аргументу с именем блока, параметра ```--e```, ```--m```, ```--v``` и ```--t```.
+You may pass comma-setarated strings as block name argument and ```--e```, ```--m```, ```--v``` and ```--t``` params.
 
-Например команда 
+As an example the following command run 
 ```
 $ yo direct b-some,b-other --elem wrap,item --m view --v inline,block --tech css,md
 ```
-создаст уже 16 файлов:
+will create 16 files:
 
 ```
 b-some/__wrap/_view/b-some__wrap_view_inline.css
@@ -73,37 +72,36 @@ b-other/__item/_view/b-other__item_view_inline.md
 b-other/__item/_view/b-other__item_view_block.md
 ```
 
-Также вы можете использовать саб генераторы напрямую. 
+Also you may run sub generators directly. 
 ```
 $ yo direct:css b-some
 ```
-В результате будет создан только файл стилей для блока.
+As a result the only tech files will be created.
 
-### Удаление
+### Deletion
 
-Если результат генерации не соответсвует требованиям, можно удалить созданные файлы.
-Для этого запустите команду с флагом ```--d```. 
+If generation results does not meet you requirements or you made a mistake in params values, you can delete files with passing ```--d``` flag. 
 
 ```
 $ yo direct b-block-name --tech js,css,deps --d
 ```
-Генератор сформирует список существующих файлов для удаления.
-Удалить можно все сразу, или выбрать файлы из списка
+
+After building list of existing files matching entity scope, generator will prompt you to delete all or selected files.
 
 ![del1](https://cloud.githubusercontent.com/assets/3533939/13980823/98f36972-f0f1-11e5-8a2f-27326b215dc8.png)
 
-Подтвердив удаление, файлы будут удалены.
+After approval, files will be removed.
 
 ![del2](https://cloud.githubusercontent.com/assets/3533939/13980802/7a34c206-f0f1-11e5-91b3-682f9fa064e4.png)
 
-## Саб-Генераторы
+## Sub-generators
 
-доступные генераторы технологий:
+Available tech sub-generators:
 
 - direct:js
 - direct:model
 - direct:interface
-- direct:bemhtml - поддерживает компактный и JS синтаксис, для настройки используйте флаг ```bemhtml-syntax```
+- direct:bemhtml - suports concise (compact) and JS syntax, use ```bemhtml-syntax``` flag to choose syntax type. 
 - direct:bh
 - direct:bemtree
 - direct:css
@@ -113,130 +111,92 @@ $ yo direct b-block-name --tech js,css,deps --d
 - direct:utils
 - direct:deps
 
-## Аргументы
+## Arguments
 
-* `blockName` - имя блока
+* `blockName` - block name
 
-## Параметры
+## Params
 
 
-* `--elem` или `--e`
+* `--elem`,  alias `--e`
 
-  Название элемента.
+  Element name
 
-* `--modName` или `--m`
+* `--modName`,  alias `--m`
 
-  Название модификатора.
+  Modifier name.
 
-* `--modVal` или `--v`
+* `--modVal`,  alias `--v`
 
-  Значение модификатора (если не указано, генератор уточнит его).
+  Modifier value (will be prompted if blank).
   
-* `--tech` или `--t`
+* `--tech`,  alias `--t`
 
-  Список технологий
+  Tech set
 
-* `--baseBlock` или `--bb`
+* `--baseBlock`,  alias `--bb`
 
-  Название базового блока.
-  Если создается deps файл, то базовый блок будет автоматически включен в секцию mustDeps
+  Base block name.
+  If ```deps``` in tech set, will be appended to ```mustDeps``` section. 
 
-* `--baseModel` или `--bm`
+* `--baseModel`,  alias `--bm`
 
-  Название базовой модели.
-  Если создается deps файл, то базовая модель будет автоматически включена в секцию mustDeps
+  Base model name.
+  If ```deps``` in tech set, will be appended to ```mustDeps``` section. 
 
-* `--implements` или `--i`
+* `--implements`,  alias `--i`
 
-  Название интерфейса.
-  Если создается deps файл, то интерфейс будет автоматически включен в секцию mustDeps
+  Interface name.
+  If ```deps``` in tech set, will be appended to ```mustDeps``` section. 
   
-* `--delete` или `--d`
+* `--delete`,  alias `--d`
 
-  Флаг удаления.
+  Deletion flag.
   
 * `--bemhtml-syntax`
 
-  Синтакс BEMHTML шаблона (js или compact)
+  BEMHTML syntax type (js or compact)
 
-* `--level` или `--l`
-  Уровень переопределения (https://en.bem.info/method/key-concepts/#redefinition-level)
+* `--level`,  alias `--l`
+  Redefenition level (https://en.bem.info/method/key-concepts/#redefinition-level)
   
 
-## Создание сущностей
 
-создать блока
+## Examples
+
+interactive block files creation
 
 ```
 yo direct b-some
 ```
 
-создание блока на заданом уровне переопределения 
+... on defined redefinition level   
 
 ```
 yo direct b-some --l common.blocks
 ```
 
-создать модификатор блока
+creating block modifier
 
 ```
 $ yo direct b-some --modName muted --modVal yes
 ```
 
-создать элемент блока
+creating block element
 
 ```
 $ yo direct b-some --elem child
 ```
 
-создать модифицированный элемент блока
+creating modified block element
 
 ```
 $ yo direct b-some --elem child --modName view --modVal inline
 ```
 
-За один раз можно создавать несколько сущностей
+creating few entities at one run
 ```
 $ yo direct:css b-some,b-other --elem item,wrap
-```
-
-в результате будет создано 4 файла
-
-
-## Прикладные примеры
-
-При генерации файла модели учитывается имя блока
-
-```
-$ yo direct dm-model --tech model // dm-model/dm-model.js
-```
-
-```
-$ yo direct b-some --tech model // b-some/b-some.vm.js
-```
-
-создать модель с базовой моделью
-
-```
-$ yo direct b-some --tech model,deps --baseModel m-some
-```
-
-создать блок с i-glue
-
-```
-$ yo direct b-some --tech js,deps --baseBlock i-glue
-```
-
-создать интерфейс
-
-```
-$ yo direct i-interface --tech interface,deps
-```
-
-удаление технологий
-
-```
-$ yo direct b-some --tech interface,deps,md --d
 ```
 
 [npm-image]: https://badge.fury.io/js/generator-direct.svg
