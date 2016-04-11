@@ -12,7 +12,7 @@ $ npm install (-g) generator-direct
 
 ### Creating files
 
-Generation starts with passing entity informantion. You can do it via cli params or use interactive mode:
+Generation starts with passing entity information. You can do it via cli params or use interactive mode:
 For quick start lets begin with interactive mode:
 ```
 yo direct
@@ -31,7 +31,7 @@ For acceptable params documentation run generator with ```--help ``` flag
 
 ### Multi-creating 
 
-A quite frequent task is creating tech files for few entites at once, for example create moodifier for block with 2 two values. You can pass comma-separated string as ```--v``` param value to rich this goal. Lets create JS and CSS to both values of ```b-some``` modifier ```view```   
+A quite frequent task is creating tech files for few entities at once, for example create modifier for block with 2 two values. You can pass comma-separated string as ```--v``` param value to rich this goal. Lets create JS and CSS to both values of ```b-some``` modifier ```view```   
 
 ```
 $ yo direct b-some --m view --v inline,block --tech js,css
@@ -45,7 +45,7 @@ b-some/_view/b-some_view_inline.css
 b-some/_view/b-some_view_block.css
 ```
 
-You may pass comma-setarated strings as block name argument and ```--e```, ```--m```, ```--v``` and ```--t``` params.
+You may pass comma separated strings as block name argument and ```--e```, ```--m```, ```--v``` and ```--t``` params.
 
 As an example the following command run 
 ```
@@ -158,7 +158,7 @@ Available tech sub-generators:
   BEMHTML syntax type (js or compact)
 
 * `--level`,  alias `--l`
-  Redefenition level (https://en.bem.info/method/key-concepts/#redefinition-level)
+  Redefinition level (https://en.bem.info/method/key-concepts/#redefinition-level)
   
 
 
